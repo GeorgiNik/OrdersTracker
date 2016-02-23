@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@ViewBag.Title - MvcTemplate</title>
+    <title>@ViewBag.Title - Orders Tracker</title>
     @Styles.Render("~/Content/css")
     @Styles.Render("~/Content/kendo")
 
@@ -30,8 +30,8 @@
                 <li>@Html.ActionLink("Home", "Index", "Home", new { area = string.Empty }, null)</li>
                 @if (User.IsInRole(GlobalConstants.AdministratorRoleName))
                 {
-                    <li>@Html.ActionLink("Administrate Ideas", "Ideas", "Administration/Ideas", new { area = string.Empty }, null)</li>
-                    <li>@Html.ActionLink("Administrate Comments", "Comments", "Administration/Comments", new { area = string.Empty }, null)</li>
+                    <li>@Html.ActionLink("Administrate Users", "Users", "Users", new { area = "Administration" }, null)</li>
+                    <li>@Html.ActionLink("Administrate Clients", "Clients", "Clients", new { area = "Administration" }, null)</li>
                 }
             </ul>
             @Html.Partial("_LoginPartial")
@@ -47,7 +47,7 @@
     @RenderBody()
     <hr/>
     <footer>
-        <p>&copy; @DateTime.Now.Year - MvcTemplate</p>
+        <p>&copy; @DateTime.Now.Year - Orders Tracker</p>
     </footer>
 </div>
 

@@ -1,0 +1,9 @@
+﻿
+@model DateTime?
+
+@(Html.Kendo().DateTimePicker()
+        .Name("datetimepicker")
+        .Value(Model == null ? DateTime.UtcNow : Model).Format("yyyy-MM-dd HH:mm")
+        .HtmlAttributes(new { style = "width:100%;" })
+      )
+

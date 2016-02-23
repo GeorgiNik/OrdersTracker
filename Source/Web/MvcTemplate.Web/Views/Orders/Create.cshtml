@@ -1,0 +1,44 @@
+﻿<h2>Create Order</h2>
+@using System.Collections
+@model MvcTemplate.Web.ViewModels.Orders.OrderCreateViewModel
+    
+@using (Html.BeginForm("CreateOrder", "Orders", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+{
+    @Html.AntiForgeryToken()
+    
+  
+    @Html.ValidationSummary("", new { @class = "text-danger" })
+    <div class="form-group">
+        @Html.LabelFor(m => m.ClientName, new { @class = "col-md-2 control-label" })
+        <div class="col-md-10">
+            @Html.DropDownListFor(x => x.ClientId, (IEnumerable<SelectListItem>)ViewBag.Clients, "Select client",new { @class = "form-control" })
+        </div>
+    </div>
+   
+    @Html.EditorFor(x=>x.Description)
+    @Html.EditorFor(x=>x.OrderPrice)
+    @Html.EditorFor(x=>x.PaidInAdvance)
+    @Html.EditorFor(x=>x.BillInCash)
+    @Html.EditorFor(x=>x.Receipt)
+    @Html.EditorFor(x=>x.PaidWithCard)
+    @Html.EditorFor(x=>x.Econt)
+    @Html.EditorFor(x=>x.PaidInCashWithoutReceipt)
+    @Html.EditorFor(x=>x.PaidBankTransaction)
+    @Html.EditorFor(x=>x.LeftToBePaid)
+    @Html.EditorFor(x=>x.Bonuses)
+    
+  
+    <div class="clearfix"></div>
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <input type="submit" class="btn btn-default" value="Create" />
+        </div>
+    </div>
+}
+
+@section Scripts {
+
+    @Scripts.Render("~/bundles/jqueryval")
+}
+
+

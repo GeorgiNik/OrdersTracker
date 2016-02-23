@@ -208,13 +208,13 @@
     <Compile Include="Areas\Administration\Controllers\AdministrationController.cs" />
     <Compile Include="Areas\Administration\Controllers\ClientsController.cs" />
     <Compile Include="Areas\Administration\Controllers\UsersController.cs" />
-    <Compile Include="Areas\Administration\ViewModels\OrderViewModel.cs" />
     <Compile Include="Areas\Administration\ViewModels\UsersViewModel.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\BaseController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="App_Start\GlimpseSecurityPolicy.cs" />
+    <Compile Include="Controllers\OrdersController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -227,6 +227,7 @@
     <Compile Include="ViewModels\Account\ResetPasswordViewModel.cs" />
     <Compile Include="ViewModels\Account\SendCodeViewModel.cs" />
     <Compile Include="ViewModels\Account\VerifyCodeViewModel.cs" />
+    <Compile Include="ViewModels\Client\ClientViewModel.cs" />
     <Compile Include="ViewModels\Manage\AddPhoneNumberViewModel.cs" />
     <Compile Include="ViewModels\Manage\ChangePasswordViewModel.cs" />
     <Compile Include="ViewModels\Manage\FactorViewModel.cs" />
@@ -237,6 +238,9 @@
     <Compile Include="Startup.cs" />
     <Compile Include="ViewModels\Manage\SetPasswordViewModel.cs" />
     <Compile Include="ViewModels\Manage\VerifyPhoneNumberViewModel.cs" />
+    <Compile Include="ViewModels\Orders\OrderCreatePageViewModel.cs" />
+    <Compile Include="ViewModels\Orders\OrderCreateViewModel.cs" />
+    <Compile Include="ViewModels\Orders\OrdersViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap-theme.css" />
@@ -459,6 +463,12 @@
     <Content Include="Views\Shared\Lockout.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Scripts\jquery-2.2.0.min.map" />
+    <Content Include="Views\Orders\Index.cshtml" />
+    <Content Include="Views\Shared\EditorTemplates\OrdersViewModel.cshtml" />
+    <Content Include="Views\Shared\EditorTemplates\DateTime.cshtml" />
+    <Content Include="Views\Shared\EditorTemplates\Decimal.cshtml" />
+    <Content Include="Views\Shared\EditorTemplates\String.cshtml" />
+    <Content Include="Views\Orders\Create.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Areas\Administration\Models\" />
@@ -466,7 +476,7 @@
     <Folder Include="ViewModels\Home\" />
     <Folder Include="Views\Base\" />
     <Folder Include="Views\Clients\" />
-    <Folder Include="Views\Orders\" />
+    <Folder Include="Views\Shared\DisplayTemplates\" />
     <Folder Include="Views\Users\" />
   </ItemGroup>
   <ItemGroup>
