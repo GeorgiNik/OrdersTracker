@@ -5,7 +5,7 @@
     using MvcTemplate.Data.Common;
     using MvcTemplate.Data.Models;
 
-    public class OrderService:IOrderService
+    public class OrderService : IOrderService
     {
         private readonly IDbRepository<Order> orders;
 
@@ -21,7 +21,7 @@
 
         public IQueryable GetCompleted()
         {
-            return this.orders.All().Where(x => x.IsComplited );
+            return this.orders.All().Where(x => x.IsComplited);
         }
 
         public IQueryable GetUnfinished()

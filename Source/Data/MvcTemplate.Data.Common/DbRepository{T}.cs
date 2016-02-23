@@ -51,12 +51,11 @@
         public void Update(T entity)
         {
             DbEntityEntry entry = this.Context.Entry(entity);
-            if (entry.State==EntityState.Detached)
+            if (entry.State == EntityState.Detached)
             {
                 this.DbSet.Attach(entity);
-
             }
-            entry.State=EntityState.Modified;
+            entry.State = EntityState.Modified;
         }
 
         public void Delete(T entity)
@@ -65,14 +64,44 @@
             entity.DeletedOn = DateTime.Now;
         }
 
+        public void Delete(int id)
+        {
+            var entity = this.GetById(id);
+
+            if (entity != null)
+            {
+                this.HardDelete(entity);
+            }
+        }
+
         public void HardDelete(T entity)
         {
-            this.DbSet.Remove(entity);
+            DbEntityEntry entry = this.Context.Entry(entity);
+            if (entry.State != EntityState.Deleted)
+            {
+                entry.State = EntityState.Deleted;
+            }
+            else
+            {
+                this.DbSet.Attach(entity);
+                this.DbSet.Remove(entity);
+            }
         }
 
         public void Save()
         {
             this.Context.SaveChanges();
+        }
+
+        public virtual void Detach(T entity)
+        {
+            DbEntityEntry entry = this.Context.Entry(entity);
+
+            entry.State = EntityState.Detached;
+        }
+        public void Dispose()
+        {
+            this.Context.Dispose();
         }
     }
 }

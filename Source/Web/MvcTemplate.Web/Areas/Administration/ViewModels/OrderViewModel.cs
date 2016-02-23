@@ -1,19 +1,22 @@
-﻿namespace MvcTemplate.Data.Models
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web;
+
+namespace MvcTemplate.Web.Areas.Administration.ViewModels
 {
-    using System;
     using System.ComponentModel.DataAnnotations;
 
-    using MvcTemplate.Data.Common.Models;
+    using AutoMapper;
 
-    public class Order : BaseModel<int>
+    using MvcTemplate.Data.Models;
+    using MvcTemplate.Web.Infrastructure.Mapping;
+    public class OrderViewModel:IMapFrom<Order>,IHaveCustomMappings
     {
-        public string AuthorId { get; set; }
 
-        public virtual ApplicationUser Author { get; set; }
+        public string Creator { get; set; }
 
-        public int ClientId { get; set; }
-
-        public virtual Client Client { get; set; }
+        public string ClientEIK { get; set; }
 
         public DateTime? Deadline { get; set; }
 
@@ -46,5 +49,12 @@
         public decimal Bonuses { get; set; }
 
         public bool IsComplited { get; set; }
+        public void CreateMappings(IMapperConfiguration configuration)
+        {
+            configuration.CreateMap<Order, OrderViewModel>()
+              .ForMember(x => x.Creator, opt => opt.MapFrom(x => x.Author.AuthorName));
+            configuration.CreateMap<Order, OrderViewModel>()
+              .ForMember(x => x.ClientEIK, opt => opt.MapFrom(x => x.Client.EIK));
+        }
     }
 }

@@ -47,7 +47,6 @@
         {
             builder.Register(x => new ApplicationDbContext()).As<DbContext>().InstancePerRequest();
             builder.Register(x => new HttpCacheService()).As<ICacheService>().InstancePerRequest();
-         
 
             var servicesAssembly = Assembly.GetAssembly(typeof(IClientService));
             builder.RegisterAssemblyTypes(servicesAssembly).AsImplementedInterfaces();

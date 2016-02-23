@@ -22,10 +22,16 @@
 
         void Delete(T entity);
 
+        void Delete(int id);
+
         void HardDelete(T entity);
 
         void Update(T entity);
 
         void Save();
+     
+        void Detach(T entity);
+
+        
     }
 }

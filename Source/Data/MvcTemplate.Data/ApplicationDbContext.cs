@@ -15,9 +15,11 @@
             : base("DefaultConnection", false)
         {
         }
-        public IDbSet<Order> Orders { get; set; } 
-        public IDbSet<Client> Clients { get; set; } 
-        
+
+        public IDbSet<Order> Orders { get; set; }
+
+        public IDbSet<Client> Clients { get; set; }
+
         public static ApplicationDbContext Create()
         {
             return new ApplicationDbContext();

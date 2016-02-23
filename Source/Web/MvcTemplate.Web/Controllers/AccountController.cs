@@ -1,7 +1,6 @@
 ﻿namespace MvcTemplate.Web.Controllers
 {
     using System.Linq;
-    using System.Net;
     using System.Threading.Tasks;
     using System.Web;
     using System.Web.Mvc;
@@ -10,11 +9,8 @@
     using Microsoft.AspNet.Identity.Owin;
     using Microsoft.Owin.Security;
 
-    using MvcTemplate.Common;
     using MvcTemplate.Data.Models;
     using MvcTemplate.Web.ViewModels.Account;
-
-    using Newtonsoft.Json;
 
     using Recaptcha;
 
@@ -161,7 +157,6 @@
             return this.View();
         }
 
-       
         // POST: /Account/Register
         [HttpPost]
         [AllowAnonymous]
@@ -171,7 +166,7 @@
         {
             if (this.ModelState.IsValid)
             {
-                var user = new ApplicationUser { UserName = model.Name, Email = model.Email, AuthorName = model.Name};
+                var user = new ApplicationUser { UserName = model.Email, Email = model.Email, AuthorName = model.Name };
                 var result = await this.UserManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {

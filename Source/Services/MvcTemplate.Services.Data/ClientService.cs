@@ -5,7 +5,7 @@
     using MvcTemplate.Data.Common;
     using MvcTemplate.Data.Models;
 
-    public class ClientService:IClientService
+    public class ClientService : IClientService
     {
         private IDbRepository<Client> clients;
 

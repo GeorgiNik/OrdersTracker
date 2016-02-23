@@ -28,7 +28,7 @@
         <div class="navbar-collapse collapse">
             <ul class="nav navbar-nav">
                 <li>@Html.ActionLink("Home", "Index", "Home", new { area = string.Empty }, null)</li>
-                @if (this.User.IsInRole(GlobalConstants.AdministratorRoleName))
+                @if (User.IsInRole(GlobalConstants.AdministratorRoleName))
                 {
                     <li>@Html.ActionLink("Administrate Ideas", "Ideas", "Administration/Ideas", new { area = string.Empty }, null)</li>
                     <li>@Html.ActionLink("Administrate Comments", "Comments", "Administration/Comments", new { area = string.Empty }, null)</li>
@@ -39,7 +39,7 @@
     </div>
 </div>
 <div class="container body-content">
-    @if (this.TempData["Notification"] != null)
+    @if (TempData["Notification"] != null)
     {
         <div class="alert alert-success" role="alert">@TempData["Notification"]</div>
     }
@@ -52,7 +52,6 @@
 </div>
 
 
-    
 @RenderSection("scripts", false)
 </body>
 </html>
