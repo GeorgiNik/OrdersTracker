@@ -1,33 +1,30 @@
-﻿﻿using System;
-using System.Collections.Generic;
-using System.Data;
-using System.Data.Entity;
-using System.Linq;
-using System.Net;
-using System.Web;
-using System.Web.Mvc;
-using Kendo.Mvc.Extensions;
-using Kendo.Mvc.UI;
-using MvcTemplate.Data.Models;
-
-namespace MvcTemplate.Web.Controllers
+﻿namespace MvcTemplate.Web.Controllers
 {
-    using AutoMapper.QueryableExtensions;
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
+    using System.Web.Mvc;
+
+    using Kendo.Mvc.Extensions;
+    using Kendo.Mvc.UI;
 
     using Microsoft.AspNet.Identity;
 
     using MvcTemplate.Data.Common;
+    using MvcTemplate.Data.Models;
     using MvcTemplate.Services.Data;
     using MvcTemplate.Web.Infrastructure.Mapping;
     using MvcTemplate.Web.ViewModels.Client;
     using MvcTemplate.Web.ViewModels.Orders;
+
     [Authorize]
     public class OrdersController : Controller
     {
-        private IDbRepository<Order> orders;
+        private readonly IClientService clientService;
 
-        private IOrderService orderService;
-        private IClientService clientService;
+        private readonly IDbRepository<Order> orders;
+
+        private readonly IOrderService orderService;
 
         public OrdersController(IDbRepository<Order> orders, IOrderService orderService, IClientService clientService)
         {
@@ -38,27 +35,24 @@ namespace MvcTemplate.Web.Controllers
 
         public ActionResult Index()
         {
-            return View();
+            return this.View();
         }
 
         public ActionResult Create()
         {
             var clients = this.clientService.GetAll();
-            IEnumerable<SelectListItem> items = clients.To<ClientViewModel>().Select(c => new SelectListItem
-            {
-                Value = c.Id.ToString(),
-                Text = c.Name
-            });
-            ViewBag.Clients = items;
-
+            IEnumerable<SelectListItem> items =
+                clients.To<ClientViewModel>().Select(c => new SelectListItem { Value = c.Id.ToString(), Text = c.Name });
+            this.ViewBag.Clients = items;
 
             return this.View();
         }
+
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult CreateOrder(OrderCreateViewModel model)
         {
-            var order = new Order()
+            var order = new Order
                             {
                                 ClientId = model.ClientId,
                                 AuthorId = this.User.Identity.GetUserId(),
@@ -80,19 +74,18 @@ namespace MvcTemplate.Web.Controllers
             this.TempData["Notification"] = "New order created!";
             return this.RedirectToAction(nameof(this.Create));
         }
-        public ActionResult Orders_Read([DataSourceRequest]DataSourceRequest request)
+
+        public ActionResult Orders_Read([DataSourceRequest] DataSourceRequest request)
         {
+            var result = this.orders.All().To<OrdersViewModel>().ToDataSourceResult(request);
 
-            DataSourceResult result = this.orders.All().To<OrdersViewModel>().ToDataSourceResult(request);
-
-            return Json(result);
+            return this.Json(result);
         }
 
-       
         [AcceptVerbs(HttpVerbs.Post)]
-        public ActionResult Orders_Update([DataSourceRequest]DataSourceRequest request, OrdersViewModel order)
+        public ActionResult Orders_Update([DataSourceRequest] DataSourceRequest request, OrdersViewModel order)
         {
-            if (ModelState.IsValid)
+            if (this.ModelState.IsValid)
             {
                 var entity = this.orderService.GetById(order.Id);
 
@@ -117,19 +110,24 @@ namespace MvcTemplate.Web.Controllers
                 this.orders.Save();
             }
 
-            return Json(new[] { order }.ToDataSourceResult(request, ModelState));
+            return this.Json(
+                new[]
+                    {
+                        order
+                    }.ToDataSourceResult(request, this.ModelState));
         }
 
         [AcceptVerbs(HttpVerbs.Post)]
-        public ActionResult Orders_Destroy([DataSourceRequest]DataSourceRequest request, OrdersViewModel order)
+        public ActionResult Orders_Destroy([DataSourceRequest] DataSourceRequest request, OrdersViewModel order)
         {
-
-
             this.orders.Delete(order.Id);
             this.orders.Save();
-            
 
-            return Json(new[] { order }.ToDataSourceResult(request, ModelState));
+            return this.Json(
+                new[]
+                    {
+                        order
+                    }.ToDataSourceResult(request, this.ModelState));
         }
 
         [HttpPost]
@@ -137,15 +135,15 @@ namespace MvcTemplate.Web.Controllers
         {
             var fileContents = Convert.FromBase64String(base64);
 
-            return File(fileContents, contentType, fileName);
+            return this.File(fileContents, contentType, fileName);
         }
-    
+
         [HttpPost]
         public ActionResult Pdf_Export_Save(string contentType, string base64, string fileName)
         {
             var fileContents = Convert.FromBase64String(base64);
 
-            return File(fileContents, contentType, fileName);
+            return this.File(fileContents, contentType, fileName);
         }
 
         protected override void Dispose(bool disposing)

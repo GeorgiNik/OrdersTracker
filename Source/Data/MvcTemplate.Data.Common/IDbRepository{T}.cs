@@ -29,11 +29,9 @@
         void Update(T entity);
 
         void Save();
-     
+
         void Detach(T entity);
 
         void Dispose();
-
-
     }
 }

@@ -28,11 +28,17 @@
         <div class="navbar-collapse collapse">
             <ul class="nav navbar-nav">
                 <li>@Html.ActionLink("Home", "Index", "Home", new { area = string.Empty }, null)</li>
-                @if (User.IsInRole(GlobalConstants.AdministratorRoleName))
+                @if (User.Identity.IsAuthenticated)
                 {
-                    <li>@Html.ActionLink("Administrate Users", "Users", "Users", new { area = "Administration" }, null)</li>
-                    <li>@Html.ActionLink("Administrate Clients", "Clients", "Clients", new { area = "Administration" }, null)</li>
+                    <li>@Html.ActionLink("Add Client", "Add", "Clients", new { area = string.Empty }, null)</li>
+                    <li>@Html.ActionLink("Add Order", "Create", "Orders", new { area = string.Empty }, null)</li>
+                    if (User.IsInRole(GlobalConstants.AdministratorRoleName))
+                    {
+                        <li>@Html.ActionLink("Administrate Users", "Details", "User", new { area = "Administration" }, null)</li>
+                        <li>@Html.ActionLink("Administrate Clients", "Details", "Client", new { area = "Administration" }, null)</li>
+                    }
                 }
+
             </ul>
             @Html.Partial("_LoginPartial")
         </div>

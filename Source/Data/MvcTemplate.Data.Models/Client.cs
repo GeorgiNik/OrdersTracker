@@ -13,7 +13,6 @@
         }
 
         [MaxLength(9)]
-        
         public string EIK { get; set; }
 
         [MaxLength(70)]

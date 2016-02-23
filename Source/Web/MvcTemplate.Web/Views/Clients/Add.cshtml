@@ -1,5 +1,4 @@
 ﻿<h2>Add Client</h2>
-@using System.Collections
 @model MvcTemplate.Web.ViewModels.Client.ClientViewModel
 
 @using (Html.BeginForm("AddClient", "Clients", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
@@ -9,12 +8,11 @@
     @Html.EditorFor(x => x.Name)
     @Html.EditorFor(x => x.Address)
     @Html.EditorFor(x => x.EIK)
-   
 
     <div class="clearfix"></div>
     <div class="form-group">
         <div class="col-md-offset-2 col-md-10">
-            <input type="submit" class="btn btn-default" value="Add" />
+            <input type="submit" class="btn btn-default" value="Add"/>
         </div>
     </div>
 }

@@ -99,6 +99,7 @@
 
             entry.State = EntityState.Detached;
         }
+
         public void Dispose()
         {
             this.Context.Dispose();
