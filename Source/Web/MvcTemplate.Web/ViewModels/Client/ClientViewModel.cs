@@ -10,12 +10,16 @@
         public int Id { get; set; }
 
         [MaxLength(9)]
+        [MinLength(9)]
+        [Required]
         public string EIK { get; set; }
 
         [MaxLength(70)]
+        [MinLength(2)]
         public string Name { get; set; }
 
         [MaxLength(100)]
+        [Required]
         public string Address { get; set; }
 
         

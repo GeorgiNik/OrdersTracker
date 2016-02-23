@@ -206,11 +206,12 @@
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Areas\Administration\AdministrationAreaRegistration.cs" />
     <Compile Include="Areas\Administration\Controllers\AdministrationController.cs" />
-    <Compile Include="Areas\Administration\Controllers\ClientsController.cs" />
+    <Compile Include="Areas\Administration\Controllers\ClientController.cs" />
     <Compile Include="Areas\Administration\Controllers\UsersController.cs" />
     <Compile Include="Areas\Administration\ViewModels\UsersViewModel.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\BaseController.cs" />
+    <Compile Include="Controllers\ClientsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="App_Start\GlimpseSecurityPolicy.cs" />
@@ -417,7 +418,7 @@
     <Content Include="Content\KendoUI\fonts\DejaVu\DejaVuSerif.ttf" />
     <Content Include="Content\KendoUI\images\kendoui.ttf" />
     <Content Include="Content\KendoUI\images\kendoui.woff" />
-    <Content Include="Areas\Administration\Views\Clients\Clients.cshtml" />
+    <Content Include="Areas\Administration\Views\Clients\Client.cshtml" />
     <Content Include="Areas\Administration\Views\Users\Users.cshtml" />
     <None Include="Scripts\jquery-2.2.0.intellisense.js" />
     <Content Include="Scripts\jquery-2.2.0.js" />
@@ -469,13 +470,13 @@
     <Content Include="Views\Shared\EditorTemplates\Decimal.cshtml" />
     <Content Include="Views\Shared\EditorTemplates\String.cshtml" />
     <Content Include="Views\Orders\Create.cshtml" />
+    <Content Include="Views\Clients\Add.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Areas\Administration\Models\" />
     <Folder Include="Areas\Administration\Views\Shared\" />
     <Folder Include="ViewModels\Home\" />
     <Folder Include="Views\Base\" />
-    <Folder Include="Views\Clients\" />
     <Folder Include="Views\Shared\DisplayTemplates\" />
     <Folder Include="Views\Users\" />
   </ItemGroup>

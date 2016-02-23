@@ -76,8 +76,7 @@ namespace MvcTemplate.Web.Controllers
                                 PaidInAdvance = model.PaidInAdvance,
                                 OrderPrice = model.OrderPrice
                             };
-            this.orders.Add(order);
-            this.orders.Save();
+            this.orderService.Add(order);
             this.TempData["Notification"] = "New order created!";
             return this.RedirectToAction(nameof(this.Create));
         }

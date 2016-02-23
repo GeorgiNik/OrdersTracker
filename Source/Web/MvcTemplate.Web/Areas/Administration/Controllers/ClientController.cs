@@ -14,18 +14,18 @@ namespace MvcTemplate.Web.Areas.Administration.Controllers
 {
     using MvcTemplate.Data.Common;
 
-    public class ClientsController : Controller
+    public class ClientController : Controller
     {
         private IDbRepository<Client> clients;
 
-        public ClientsController(IDbRepository<Client> clients)
+        public ClientController(IDbRepository<Client> clients)
         {
             this.clients = clients;
         } 
 
         public ActionResult Clients()
         {
-            return View();
+            return this.View();
         }
 
         public ActionResult Clients_Read([DataSourceRequest]DataSourceRequest request)
@@ -122,6 +122,6 @@ namespace MvcTemplate.Web.Areas.Administration.Controllers
             return File(fileContents, contentType, fileName);
         }
 
-      
+        
     }
 }
