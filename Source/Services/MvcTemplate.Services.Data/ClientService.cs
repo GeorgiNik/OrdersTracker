@@ -11,6 +11,12 @@
 
         private IDbRepository<Order> orders;
 
+        public ClientService(IDbRepository<Order> orders, IDbRepository<Client> clients)
+        {
+            this.clients = clients;
+            this.orders = orders;
+        }
+
         public IQueryable GetAll()
         {
             return this.clients.All();
@@ -24,6 +30,12 @@
         public IQueryable GetAllOrders(int id)
         {
             return this.orders.All().Where(x => x.ClientId == id);
+        }
+
+        public void Add(Client model)
+        {
+            this.clients.Add(model);
+            this.clients.Save();
         }
     }
 }

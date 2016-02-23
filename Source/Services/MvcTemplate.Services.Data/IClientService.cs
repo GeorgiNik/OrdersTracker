@@ -11,5 +11,7 @@
         Client GetById(int id);
 
         IQueryable GetAllOrders(int id);
+
+        void Add(Client model);
     }
 }

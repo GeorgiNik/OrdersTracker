@@ -12,14 +12,14 @@
             this.Orders = new HashSet<Order>();
         }
 
-        [StringLength(9)]
-        [Required]
+        [MaxLength(9)]
+        
         public string EIK { get; set; }
 
-        [StringLength(70)]
+        [MaxLength(70)]
         public string Name { get; set; }
 
-        [StringLength(100)]
+        [MaxLength(100)]
         public string Address { get; set; }
 
         public ICollection<Order> Orders { get; set; }

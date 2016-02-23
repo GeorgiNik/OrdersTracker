@@ -30,7 +30,7 @@
 
         public IQueryable<T> All()
         {
-            return this.DbSet.Where(x => !x.IsDeleted);
+            return this.DbSet.AsQueryable();
         }
 
         public IQueryable<T> AllWithDeleted()

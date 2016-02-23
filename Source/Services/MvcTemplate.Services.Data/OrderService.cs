@@ -9,6 +9,11 @@
     {
         private readonly IDbRepository<Order> orders;
 
+        public OrderService(IDbRepository<Order> orders)
+        {
+            this.orders = orders;
+        }
+
         public IQueryable GetAll()
         {
             return this.orders.All();
@@ -42,6 +47,12 @@
         public IQueryable GetAllPaidByCard()
         {
             return this.orders.All().Where(x => x.PaidWithCard != 0);
+        }
+
+        public void Add(Order order)
+        {
+            this.orders.Add(order);
+            this.orders.Save();
         }
     }
 }

@@ -32,6 +32,8 @@
      
         void Detach(T entity);
 
-        
+        void Dispose();
+
+
     }
 }

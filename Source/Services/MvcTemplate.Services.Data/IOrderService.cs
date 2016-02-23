@@ -19,5 +19,7 @@
         IQueryable GetAllSentByEcont();
 
         IQueryable GetAllPaidByCard();
+
+        void Add(Order order);
     }
 }
