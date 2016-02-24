@@ -1,0 +1,20 @@
+﻿@using MvcTemplate.Common
+<ul class="nav navbar-nav">
+    <li>@Html.ActionLink("Home", "Index", "Home", new { area = string.Empty }, null)</li>
+    @if (User.Identity.IsAuthenticated)
+    {
+        <li>@Html.ActionLink("Orders", "Index", "Orders", new { area = string.Empty }, null)</li>
+        <li>@Html.ActionLink("Add Client", "Add", "Clients", new { area = string.Empty }, null)</li>
+                    <li>@Html.ActionLink("Add Order", "Create", "Orders", new { area = string.Empty }, null)</li>
+        if (User.IsInRole(GlobalConstants.AdministratorRoleName))
+        {
+            <li>@Html.ActionLink("Administrate Users", "Details", "User", new { area = "Administration" }, null)</li>
+            <li>@Html.ActionLink("Administrate Clients", "Details", "Client", new { area = "Administration" }, null)</li>
+            <li>@Html.ActionLink("View Incomes", "Details", "Income", new { area = "Administration" }, null)</li>
+
+        }
+
+    }
+
+</ul>
+

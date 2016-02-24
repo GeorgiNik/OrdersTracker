@@ -33,7 +33,7 @@
             {
                 var client = new Client { EIK = model.EIK, Address = model.Address, Name = model.Name };
                 this.clientService.Add(client);
-                this.TempData["Notification"] = "New order created!";
+                this.TempData["Notification"] = "New client added!";
             }
             return this.RedirectToAction(nameof(this.Add));
         }

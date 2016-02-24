@@ -8,13 +8,8 @@
     @Html.EditorFor(x => x.Name)
     @Html.EditorFor(x => x.Address)
     @Html.EditorFor(x => x.EIK)
-
-    <div class="clearfix"></div>
-    <div class="form-group">
-        <div class="col-md-offset-2 col-md-10">
-            <input type="submit" class="btn btn-default" value="Add"/>
-        </div>
-    </div>
+    @Html.Partial("_AddButtonPartial")
+    
 }
 
 @section Scripts {

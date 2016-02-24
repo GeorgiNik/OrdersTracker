@@ -1,5 +1,4 @@
-﻿@using MvcTemplate.Data.Models
-@using MvcTemplate.Web.ViewModels.Client
+﻿@using MvcTemplate.Web.ViewModels.Client
 @using Kendo.Mvc.UI
 @(Html.Kendo().Grid<ClientViewModel>().Name("grid").Columns(columns =>
       {
@@ -19,6 +18,6 @@
               toolbar.Pdf();
           }).ColumnMenu().Editable(editable => editable.Mode(GridEditMode.InLine)).Pageable().Sortable(sortable => { sortable.SortMode(GridSortMode.MultipleColumn); }).Filterable().Scrollable().DataSource(dataSource => dataSource.Ajax().Model(model => model.Id(p => p.Id)).Read(read => read.Action("Clients_Read", "Client")).Create(create => create.Action("Clients_Create", "Client")).Update(update => update.Action("Clients_Update", "Client")).Destroy(destroy => destroy.Action("Clients_Destroy", "Client")))
       )
-@section Scripts {
+@section customScripts {
     <script src="http://cdnjs.cloudflare.com/ajax/libs/jszip/2.4.0/jszip.js"></script>
 }

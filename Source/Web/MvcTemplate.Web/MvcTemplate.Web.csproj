@@ -207,6 +207,7 @@
     <Compile Include="Areas\Administration\AdministrationAreaRegistration.cs" />
     <Compile Include="Areas\Administration\Controllers\AdministrationController.cs" />
     <Compile Include="Areas\Administration\Controllers\ClientController.cs" />
+    <Compile Include="Areas\Administration\Controllers\IncomeController.cs" />
     <Compile Include="Areas\Administration\Controllers\UserController.cs" />
     <Compile Include="Areas\Administration\ViewModels\UsersViewModel.cs" />
     <Compile Include="Controllers\AccountController.cs" />
@@ -454,6 +455,8 @@
     <Content Include="Content\KendoUI\images\kendoui.woff" />
     <Content Include="Areas\Administration\Views\Client\Details.cshtml" />
     <Content Include="Areas\Administration\Views\User\Details.cshtml" />
+    <Content Include="Areas\Administration\Views\Income\Details.cshtml" />
+    <Content Include="Areas\Administration\Views\Shared\_SearchPartial.cshtml" />
     <None Include="Scripts\jquery-2.2.0.intellisense.js" />
     <Content Include="Scripts\jquery-2.2.0.js" />
     <Content Include="Scripts\jquery-2.2.0.min.js" />
@@ -476,7 +479,7 @@
     </Content>
     <Content Include="Views\Web.config" />
     <Content Include="Views\_ViewStart.cshtml" />
-    <Content Include="Views\Shared\Error.cshtml" />
+    <Content Include="Views\Error\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Account\_ExternalLoginsListPartial.cshtml" />
@@ -512,10 +515,19 @@
     <Content Include="Views\Shared\EditorTemplates\CompletionDate.cshtml" />
     <Content Include="Views\Error\NotFound.cshtml" />
     <Content Include="Views\Error\InternalError.cshtml" />
+    <Content Include="Views\Shared\_NavbarPartial.cshtml" />
+    <Content Include="Views\Shared\_FooterPartial.cshtml" />
+    <Content Include="Views\Shared\_LogoPartial.cshtml" />
+    <Content Include="Views\Shared\_NotificationPartial.cshtml" />
+    <Content Include="Views\Shared\_HeaderPartial.cshtml" />
+    <Content Include="Views\Shared\_NavigatianPartial.cshtml" />
+    <Content Include="Views\Home\_HomePartial.cshtml" />
+    <Content Include="Views\Clients\_AddButtonPartial.cshtml" />
+    <Content Include="Views\Shared\DisplayTemplates\TotalCount.cshtml" />
+    <Content Include="Views\Shared\_CreateButtonPartial.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Areas\Administration\Models\" />
-    <Folder Include="Areas\Administration\Views\Shared\" />
     <Folder Include="Views\Base\" />
     <Folder Include="Views\Users\" />
   </ItemGroup>

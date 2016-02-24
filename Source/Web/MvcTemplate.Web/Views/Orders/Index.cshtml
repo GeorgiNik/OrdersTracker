@@ -31,6 +31,6 @@
     toolbar.Pdf();
 }).ColumnMenu().Editable(editable => editable.Mode(GridEditMode.PopUp)).HtmlAttributes(new {height="400"}).Pageable().Sortable(sortable => { sortable.SortMode(GridSortMode.MultipleColumn); }).Filterable().Scrollable(a => a.Height("auto")).DataSource(dataSource => dataSource.Ajax().Model(model => model.Id(p => p.Id)).Read(read => read.Action("Orders_Read", "Orders")).Update(update => update.Action("Orders_Update", "Orders")).Destroy(destroy => destroy.Action("Orders_Destroy", "Orders")))
       )
-@section Scripts {
+@section customScripts {
     <script src="http://cdnjs.cloudflare.com/ajax/libs/jszip/2.4.0/jszip.js"></script>
 }

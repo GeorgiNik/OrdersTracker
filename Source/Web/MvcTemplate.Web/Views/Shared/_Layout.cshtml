@@ -1,65 +1,22 @@
-﻿@using MvcTemplate.Common
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html>
 <head>
-    <meta charset="utf-8"/>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@ViewBag.Title - Orders Tracker</title>
+    @Html.Partial("_HeaderPartial")
     @Styles.Render("~/Content/css")
     @Styles.Render("~/Content/kendo")
-    
+
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
     @Scripts.Render("~/bundles/kendo")
-    
-
-
 </head>
 <body>
-<div class="navbar navbar-inverse navbar-fixed-top">
-    <div class="container">
-        <div class="navbar-header">
-            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-            </button>
-            @Html.ActionLink("UserVoice", "Index", "Home", new { area = string.Empty }, new { @class = "navbar-brand" })
-        </div>
-        <div class="navbar-collapse collapse">
-            <ul class="nav navbar-nav">
-                <li>@Html.ActionLink("Home", "Index", "Home", new { area = string.Empty }, null)</li>
-                @if (User.Identity.IsAuthenticated)
-                {
-                    <li>@Html.ActionLink("Orders", "Index", "Orders", new { area = string.Empty }, null)</li>
-                    <li>@Html.ActionLink("Add Client", "Add", "Clients", new { area = string.Empty }, null)</li>
-                    <li>@Html.ActionLink("Add Order", "Create", "Orders", new { area = string.Empty }, null)</li>
-                    if (User.IsInRole(GlobalConstants.AdministratorRoleName))
-                    {
-                        <li>@Html.ActionLink("Administrate Users", "Details", "User", new { area = "Administration" }, null)</li>
-                        <li>@Html.ActionLink("Administrate Clients", "Details", "Client", new { area = "Administration" }, null)</li>
-                    }
-                }
-
-            </ul>
-            @Html.Partial("_LoginPartial")
-        </div>
+    @Html.Partial("_NavigatianPartial")
+    <div class="container body-content">
+        @Html.Partial("_NotificationPartial")
+        @RenderBody()
+        @Html.Partial("_FooterPartial")
     </div>
-</div>
-<div class="container body-content">
-    @if (TempData["Notification"] != null)
-    {
-        <div class="alert alert-success" role="alert">@TempData["Notification"]</div>
-    }
-
-    @RenderBody()
-    <hr/>
-    <footer>
-        <p>&copy; @DateTime.Now.Year - Orders Tracker</p>
-    </footer>
-</div>
-
-
-@RenderSection("scripts", false)
+    @RenderSection("scripts", false)
+    @RenderSection("customScripts", required: false)
 </body>
 </html>
