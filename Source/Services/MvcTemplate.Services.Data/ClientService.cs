@@ -4,12 +4,13 @@
 
     using MvcTemplate.Data.Common;
     using MvcTemplate.Data.Models;
+    using MvcTemplate.Services.Data.Contracts;
 
     public class ClientService : IClientService
     {
-        private readonly IDbRepository<Client> clients;
+        private  IDbRepository<Client> clients;
 
-        private readonly IDbRepository<Order> orders;
+        private  IDbRepository<Order> orders;
 
         public ClientService(IDbRepository<Order> orders, IDbRepository<Client> clients)
         {
@@ -17,7 +18,7 @@
             this.orders = orders;
         }
 
-        public IQueryable GetAll()
+        public IQueryable<Client> GetAll()
         {
             return this.clients.All();
         }
@@ -27,7 +28,7 @@
             return this.clients.GetById(id);
         }
 
-        public IQueryable GetAllOrders(int id)
+        public IQueryable<Order> GetAllOrders(int id)
         {
             return this.orders.All().Where(x => x.ClientId == id);
         }

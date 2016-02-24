@@ -7,10 +7,11 @@
     <title>@ViewBag.Title - Orders Tracker</title>
     @Styles.Render("~/Content/css")
     @Styles.Render("~/Content/kendo")
-
+    
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
     @Scripts.Render("~/bundles/kendo")
+    
 
 
 </head>
@@ -30,6 +31,7 @@
                 <li>@Html.ActionLink("Home", "Index", "Home", new { area = string.Empty }, null)</li>
                 @if (User.Identity.IsAuthenticated)
                 {
+                    <li>@Html.ActionLink("Orders", "Index", "Orders", new { area = string.Empty }, null)</li>
                     <li>@Html.ActionLink("Add Client", "Add", "Clients", new { area = string.Empty }, null)</li>
                     <li>@Html.ActionLink("Add Order", "Create", "Orders", new { area = string.Empty }, null)</li>
                     if (User.IsInRole(GlobalConstants.AdministratorRoleName))

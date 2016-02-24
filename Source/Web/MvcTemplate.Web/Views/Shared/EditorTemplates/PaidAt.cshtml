@@ -1,0 +1,9 @@
+﻿@model DateTime?
+
+<div class="form-group">
+    @Html.LabelFor(m => m, new { @class = "col-md-2 control-label" })
+    <div class="col-md-10">
+        @(Html.Kendo().DateTimePickerFor(m => m).Name("paidAtPicker").Value(Model == null ? DateTime.Now : Model).HtmlAttributes(new { style = "width:100%;" })        )
+    </div>
+</div>
+

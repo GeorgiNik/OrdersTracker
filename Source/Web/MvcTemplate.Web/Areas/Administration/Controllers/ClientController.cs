@@ -9,6 +9,8 @@
     using MvcTemplate.Common;
     using MvcTemplate.Data.Common;
     using MvcTemplate.Data.Models;
+    using MvcTemplate.Web.Infrastructure.Mapping;
+    using MvcTemplate.Web.ViewModels.Client;
 
     [Authorize(Roles = GlobalConstants.AdministratorRoleName)]
     public class ClientController : Controller
@@ -28,15 +30,13 @@
         public ActionResult Clients_Read([DataSourceRequest] DataSourceRequest request)
         {
             var clients = this.clients.All();
-            var result = clients.ToDataSourceResult(
-                request,
-                client => new { client.Id, client.EIK, client.Name, client.Address });
+            var result = clients.To<ClientViewModel>().ToDataSourceResult(request);
 
             return this.Json(result);
         }
 
         [AcceptVerbs(HttpVerbs.Post)]
-        public ActionResult Clients_Create([DataSourceRequest] DataSourceRequest request, Client client)
+        public ActionResult Clients_Create([DataSourceRequest] DataSourceRequest request, ClientViewModel client)
         {
             if (this.ModelState.IsValid)
             {
@@ -55,17 +55,16 @@
         }
 
         [AcceptVerbs(HttpVerbs.Post)]
-        public ActionResult Clients_Update([DataSourceRequest] DataSourceRequest request, Client client)
+        public ActionResult Clients_Update([DataSourceRequest] DataSourceRequest request, ClientViewModel client)
         {
             if (this.ModelState.IsValid)
             {
-                var entity = new Client
-                                 {
-                                     Id = client.Id,
-                                     EIK = client.EIK,
-                                     Name = client.Name,
-                                     Address = client.Address
-                                 };
+                var entity = this.clients.GetById(client.Id);
+                
+                entity.EIK = client.EIK;
+                entity.Name = client.Name;
+                entity.Address = client.Address;
+                                 
 
                 this.clients.Update(entity);
                 this.clients.Save();
@@ -79,7 +78,7 @@
         }
 
         [AcceptVerbs(HttpVerbs.Post)]
-        public ActionResult Clients_Destroy([DataSourceRequest] DataSourceRequest request, Client client)
+        public ActionResult Clients_Destroy([DataSourceRequest] DataSourceRequest request, ClientViewModel client)
         {
             var entity = new Client { Id = client.Id, EIK = client.EIK, Name = client.Name, Address = client.Address };
 

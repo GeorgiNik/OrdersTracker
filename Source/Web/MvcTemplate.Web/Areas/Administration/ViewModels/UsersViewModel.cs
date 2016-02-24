@@ -12,7 +12,7 @@
         public string AuthorName { get; set; }
 
         public string Email { get; set; }
-
+        
         public void CreateMappings(IMapperConfiguration configuration)
         {
             configuration.CreateMap<ApplicationUser, UsersViewModel>()

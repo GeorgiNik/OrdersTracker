@@ -1,5 +1,7 @@
 ﻿@using MvcTemplate.Data.Models
-@(Html.Kendo().Grid<Client>().Name("grid").Columns(columns =>
+@using MvcTemplate.Web.ViewModels.Client
+@using Kendo.Mvc.UI
+@(Html.Kendo().Grid<ClientViewModel>().Name("grid").Columns(columns =>
       {
           columns.Bound(c => c.EIK);
           columns.Bound(c => c.Name);

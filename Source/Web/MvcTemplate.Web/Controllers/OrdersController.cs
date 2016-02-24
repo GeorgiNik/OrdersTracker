@@ -13,6 +13,7 @@
     using MvcTemplate.Data.Common;
     using MvcTemplate.Data.Models;
     using MvcTemplate.Services.Data;
+    using MvcTemplate.Services.Data.Contracts;
     using MvcTemplate.Web.Infrastructure.Mapping;
     using MvcTemplate.Web.ViewModels.Client;
     using MvcTemplate.Web.ViewModels.Orders;

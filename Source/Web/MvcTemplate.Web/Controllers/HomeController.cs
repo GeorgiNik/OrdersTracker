@@ -2,41 +2,42 @@
 {
     using System.Web.Mvc;
 
+    using Kendo.Mvc.Extensions;
+
+    using MvcTemplate.Common;
+    using MvcTemplate.Services.Data;
+    using MvcTemplate.Services.Data.Contracts;
+    using MvcTemplate.Web.ViewModels.Home;
+
     public class HomeController : BaseController
     {
-        //private readonly ICommentService comments;
+        private readonly IOrderService orders;
 
-        //private readonly IIdeaService ideas;
+        private readonly IClientService clients;
 
-        //private const int ItemsPerPage = 3;
-        //public HomeController(ICommentService comments, IIdeaService ideas)
-        //{
-        //    this.comments = comments;
-        //    this.ideas = ideas;
-        //}
-
-        public ActionResult Index(int id = 1)
+        private readonly IUserService users;
+       
+        public HomeController(IClientService clients, IOrderService orders, IUserService users)
         {
-            return this.View();
+            this.orders = orders;
+            this.clients = clients;
+            this.users = users;
         }
 
-        //[HttpPost]
-        //[ValidateAntiForgeryToken]
-        //public ActionResult PostIdea(IndexViewModel model)
-        //{
-        //    if (!this.ModelState.IsValid)
-        //    {
-        //        return this.View(model);
-        //    }
-        //    var idea = new Idea { Title = model.Idea.Title, Description = model.Idea.Description };
-        //    if (this.User.Identity.IsAuthenticated)
-        //    {
-        //        idea.AuthorId = this.User.Identity.GetUserId();
-        //    }
-        //    this.ideas.CreateIdea(idea);
-        //    this.TempData["Notification"] = "Thank your for your idea!";
-        //    return this.Redirect("/");
-
-        // }
+        //[OutputCache(Duration = GlobalConstants.HomePageCacheDuration)]
+        public ActionResult Index()
+        {
+            var totalUsers = this.users.GetUsersCount();
+            var totalOrders = this.orders.GetAll().Count();
+            var totalClients = this.clients.GetAll().Count();
+            var viewModel = new HomeViewModel()
+                                {
+                                    ClientsCount = totalClients,
+                                    OrdersCount = totalOrders,
+                                    UsersCount = totalUsers
+                                };
+            return this.View(viewModel);
+        }
+        
     }
 }

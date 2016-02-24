@@ -1,4 +1,4 @@
-﻿namespace MvcTemplate.Services.Data
+﻿namespace MvcTemplate.Services.Data.Contracts
 {
     using System.Linq;
 
@@ -6,11 +6,11 @@
 
     public interface IClientService
     {
-        IQueryable GetAll();
+        IQueryable<Client> GetAll();
 
         Client GetById(int id);
 
-        IQueryable GetAllOrders(int id);
+        IQueryable<Order> GetAllOrders(int id);
 
         void Add(Client model);
     }

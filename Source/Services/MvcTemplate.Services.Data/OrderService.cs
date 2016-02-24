@@ -1,20 +1,22 @@
 ﻿namespace MvcTemplate.Services.Data
 {
     using System.Linq;
+    using System.Runtime.InteropServices;
 
     using MvcTemplate.Data.Common;
     using MvcTemplate.Data.Models;
+    using MvcTemplate.Services.Data.Contracts;
 
     public class OrderService : IOrderService
     {
-        private readonly IDbRepository<Order> orders;
+        private IDbRepository<Order> orders;
 
         public OrderService(IDbRepository<Order> orders)
         {
             this.orders = orders;
         }
 
-        public IQueryable GetAll()
+        public IQueryable<Order> GetAll()
         {
             return this.orders.All();
         }
@@ -24,12 +26,12 @@
             return this.orders.GetById(id);
         }
 
-        public IQueryable GetCompleted()
+        public IQueryable<Order> GetCompleted()
         {
             return this.orders.All().Where(x => x.IsComplited);
         }
 
-        public IQueryable GetUnfinished()
+        public IQueryable<Order> GetUnfinished()
         {
             return this.orders.All().Where(x => x.IsComplited == false);
         }
@@ -39,12 +41,12 @@
             return this.orders.All().Where(x => x.CreatedOn.Month == month).Sum(sum => sum.OrderPrice);
         }
 
-        public IQueryable GetAllSentByEcont()
+        public IQueryable<Order> GetAllSentByEcont()
         {
             return this.orders.All().Where(x => x.Econt != 0);
         }
 
-        public IQueryable GetAllPaidByCard()
+        public IQueryable<Order> GetAllPaidByCard()
         {
             return this.orders.All().Where(x => x.PaidWithCard != 0);
         }

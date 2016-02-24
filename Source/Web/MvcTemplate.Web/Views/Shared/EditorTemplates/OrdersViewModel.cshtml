@@ -1,5 +1,5 @@
 ﻿@model MvcTemplate.Web.ViewModels.Orders.OrdersViewModel
-<div class="form form-horizontal">
+<div class="form form-horizontal center">
     @Html.AntiForgeryToken()
     <h4>Update Order</h4>
     <hr/>
@@ -11,108 +11,46 @@
         </div>
     </div>
     <div class="form-group">
-        @Html.LabelFor(m => m.CreatedOn, new { @class = "col-md-2 control-label" })
-        <div class="col-md-10">
-            @Html.TextBoxFor(m => m.CreatedOn, new { @class = "form-control" })
-        </div>
-    </div>
-    <div class="form-group">
         @Html.LabelFor(m => m.ClientEIK, new { @class = "col-md-2 control-label" })
         <div class="col-md-10">
             @Html.TextBoxFor(m => m.ClientEIK, new { @class = "form-control" })
         </div>
     </div>
-    <div class="form-group">
-        @Html.LabelFor(m => m.Description, new { @class = "col-md-2 control-label" })
-        <div class="col-md-10">
-            @Html.TextBoxFor(m => m.Description, new { @class = "form-control" })
-        </div>
-    </div>
-    <div class="form-group">
-        @Html.LabelFor(m => m.Deadline, new { @class = "col-md-2 control-label" })
-        <div class="col-md-10">
-            @Html.EditorFor(m => m.Deadline, new { @class = "form-control" })
-        </div>
-    </div>
-    <div class="form-group">
-        @Html.LabelFor(m => m.OrderPrice, new { @class = "col-md-2 control-label" })
-        <div class="col-md-10">
-            @Html.TextBoxFor(m => m.OrderPrice, new { @class = "form-control" })
-        </div>
-    </div>
-    <div class="form-group">
-        @Html.LabelFor(m => m.PaidInAdvance, new { @class = "col-md-2 control-label" })
-        <div class="col-md-10">
-            @Html.TextBoxFor(m => m.PaidInAdvance, new { @class = "form-control" })
-        </div>
-    </div>
-    <div class="form-group">
-        @Html.LabelFor(m => m.BillInCash, new { @class = "col-md-2 control-label" })
-        <div class="col-md-10">
-            @Html.TextBoxFor(m => m.BillInCash, new { @class = "form-control" })
-        </div>
-    </div>
-    <div class="form-group">
-        @Html.LabelFor(m => m.Receipt, new { @class = "col-md-2 control-label" })
-        <div class="col-md-10">
-            @Html.TextBoxFor(m => m.Receipt, new { @class = "form-control" })
-        </div>
-    </div>
-    <div class="form-group">
-        @Html.LabelFor(m => m.PaidWithCard, new { @class = "col-md-2 control-label" })
-        <div class="col-md-10">
-            @Html.TextBoxFor(m => m.PaidWithCard, new { @class = "form-control" })
-        </div>
-    </div>
-    <div class="form-group">
-        @Html.LabelFor(m => m.Econt, new { @class = "col-md-2 control-label" })
-        <div class="col-md-10">
-            @Html.TextBoxFor(m => m.Econt, new { @class = "form-control" })
-        </div>
-    </div>
-    <div class="form-group">
-        @Html.LabelFor(m => m.PaidInCashWithoutReceipt, new { @class = "col-md-2 control-label" })
-        <div class="col-md-10">
-            @Html.TextBoxFor(m => m.PaidInCashWithoutReceipt, new { @class = "form-control" })
-        </div>
-    </div>
-    <div class="form-group">
-        @Html.LabelFor(m => m.PaidBankTransaction, new { @class = "col-md-2 control-label" })
-        <div class="col-md-10">
-            @Html.TextBoxFor(m => m.PaidBankTransaction, new { @class = "form-control" })
-        </div>
-    </div>
-    <div class="form-group">
-        @Html.LabelFor(m => m.LeftToBePaid, new { @class = "col-md-2 control-label" })
-        <div class="col-md-10">
-            @Html.TextBoxFor(m => m.LeftToBePaid, new { @class = "form-control" })
-        </div>
-    </div>
+    @Html.EditorFor(x=>x.Deadline)
+    @Html.EditorFor(x=>x.Creator)
+    @Html.DisplayFor(x=>x.CreatedOn)
+    @Html.EditorFor(x=>x.Description)
+    @Html.EditorFor(x=>x.OrderPrice)
+    @Html.EditorFor(x=>x.PaidInAdvance)
+    @Html.EditorFor(x=>x.BillInCash)
+    @Html.EditorFor(x=>x.Receipt)
+    @Html.EditorFor(x=>x.PaidWithCard)
+    @Html.EditorFor(x=>x.Econt)
+    @Html.EditorFor(x=>x.PaidInCashWithoutReceipt)
+    @Html.EditorFor(x=>x.LeftToBePaid)
+    
     <div class="form-group">
         @Html.LabelFor(m => m.PaidAt, new { @class = "col-md-2 control-label" })
         <div class="col-md-10">
-            @Html.EditorFor(m => m.PaidAt, new { @class = "form-control" })
+            @Html.Kendo().DateTimePickerFor(t=>t.PaidAt).Name("papicker").Value(DateTime.UtcNow).Format("yyyy-MM-dd HH:mm").HtmlAttributes(new { style = "width:100%;" })        
         </div>
     </div>
-    <div class="form-group">
-        @Html.LabelFor(m => m.DateOfComplition, new { @class = "col-md-2 control-label" })
-        <div class="col-md-10">
-            @Html.EditorFor(m => m.DateOfComplition, new { @class = "form-control" })
-        </div>
-    </div>
+    @Html.EditorFor(x => x.Bonuses)
+    @Html.EditorFor(x=>x.DateOfComplition)
     <div class="form-group">
         @Html.LabelFor(m => m.IsComplited, new { @class = "col-md-2 control-label" })
         <div class="col-md-10">
             @Html.CheckBoxFor(m => m.IsComplited, new { @class = "form-control" })
         </div>
     </div>
-    <div class="form-group">
-        @Html.LabelFor(m => m.Bonuses, new { @class = "col-md-2 control-label" })
-        <div class="col-md-10">
-            @Html.TextBoxFor(m => m.Bonuses, new { @class = "form-control" })
-        </div>
-    </div>
-    <div class="clearfix"></div>
+   
+   
+  
+    
+    
+    
+   
+  
 
 
 </div>

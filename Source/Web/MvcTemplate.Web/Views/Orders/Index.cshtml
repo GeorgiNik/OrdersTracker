@@ -1,35 +1,35 @@
 ﻿@using MvcTemplate.Web.ViewModels.Orders
 @(Html.Kendo().Grid<OrdersViewModel>().Name("grid").Columns(columns =>
-      {
-          columns.Bound(c => c.Creator).Width(100);
-          columns.Bound(c => c.CreatedOn).Format("{0:yyyy-MM-dd HH:mm}").Width(120);
-          columns.Bound(c => c.ClientEIK).Width(120);
-          columns.Bound(c => c.Deadline).Format("{0:yyyy-MM-dd HH:mm}").Width(120);
-          columns.Bound(c => c.Description).Width(150);
-          columns.Bound(c => c.OrderPrice).Width(120);
-          columns.Bound(c => c.PaidInAdvance).Width(150);
-          columns.Bound(c => c.BillInCash).Width(150);
-          columns.Bound(c => c.Receipt).Width(120);
-          columns.Bound(c => c.PaidWithCard).Width(150);
-          columns.Bound(c => c.Econt).Width(120);
-          columns.Bound(c => c.PaidInCashWithoutReceipt).Width(280);
-          columns.Bound(c => c.PaidBankTransaction).Width(200);
-          columns.Bound(c => c.LeftToBePaid).Width(120);
-          columns.Bound(c => c.PaidAt).Format("{0:yyyy-MM-dd HH:mm}").Width(120);
-          columns.Bound(c => c.DateOfComplition).Format("{0:yyyy-MM-dd HH:mm}").Width(180);
-          columns.Bound(c => c.Bonuses).Width(120);
-          columns.Bound(c => c.IsComplited).Width(140);
+{
+    columns.Bound(c => c.Creator).Width(100);
+    columns.Bound(c => c.CreatedOn).Format("{0:yyyy-MM-dd HH:mm}").Width(120);
+    columns.Bound(c => c.ClientEIK).Width(120);
+    columns.Bound(c => c.Deadline).Format("{0:yyyy-MM-dd HH:mm}").Width(120);
+    columns.Bound(c => c.Description).Width(150);
+    columns.Bound(c => c.OrderPrice).Width(120);
+    columns.Bound(c => c.PaidInAdvance).Width(150);
+    columns.Bound(c => c.BillInCash).Width(150);
+    columns.Bound(c => c.Receipt).Width(120);
+    columns.Bound(c => c.PaidWithCard).Width(150);
+    columns.Bound(c => c.Econt).Width(120);
+    columns.Bound(c => c.PaidInCashWithoutReceipt).Width(280);
+    columns.Bound(c => c.PaidBankTransaction).Width(200);
+    columns.Bound(c => c.LeftToBePaid).Width(120);
+    columns.Bound(c => c.PaidAt).Format("{0:yyyy-MM-dd HH:mm}").Width(120);
+    columns.Bound(c => c.DateOfComplition).Format("{0:yyyy-MM-dd HH:mm}").Width(180);
+    columns.Bound(c => c.Bonuses).Width(120);
+    columns.Bound(c => c.IsComplited).Width(140);
 
-          columns.Command(command =>
-              {
-                  command.Edit();
-                  command.Destroy();
-              }).Width(180);
-      }).ToolBar(toolbar =>
-          {
-              toolbar.Excel();
-              toolbar.Pdf();
-          }).ColumnMenu().Editable(editable => editable.Mode(GridEditMode.InLine)).Pageable().Sortable(sortable => { sortable.SortMode(GridSortMode.MultipleColumn); }).Filterable().Scrollable().DataSource(dataSource => dataSource.Ajax().Model(model => model.Id(p => p.Id)).Read(read => read.Action("Orders_Read", "Orders")).Update(update => update.Action("Orders_Update", "Orders")).Destroy(destroy => destroy.Action("Orders_Destroy", "Orders")))
+    columns.Command(command =>
+    {
+        command.Edit();
+        command.Destroy();
+    }).Width(180);
+}).ToolBar(toolbar =>
+{
+    toolbar.Excel();
+    toolbar.Pdf();
+}).ColumnMenu().Editable(editable => editable.Mode(GridEditMode.PopUp)).HtmlAttributes(new {height="400"}).Pageable().Sortable(sortable => { sortable.SortMode(GridSortMode.MultipleColumn); }).Filterable().Scrollable(a => a.Height("auto")).DataSource(dataSource => dataSource.Ajax().Model(model => model.Id(p => p.Id)).Read(read => read.Action("Orders_Read", "Orders")).Update(update => update.Action("Orders_Update", "Orders")).Destroy(destroy => destroy.Action("Orders_Destroy", "Orders")))
       )
 @section Scripts {
     <script src="http://cdnjs.cloudflare.com/ajax/libs/jszip/2.4.0/jszip.js"></script>

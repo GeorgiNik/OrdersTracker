@@ -12,6 +12,7 @@
     using MvcTemplate.Data;
     using MvcTemplate.Data.Models;
     using MvcTemplate.Web.Areas.Administration.ViewModels;
+    using MvcTemplate.Web.Infrastructure.Mapping;
 
     [Authorize(Roles = GlobalConstants.AdministratorRoleName)]
     public class UserController : Controller
@@ -26,9 +27,7 @@
         public ActionResult ApplicationUsers_Read([DataSourceRequest] DataSourceRequest request)
         {
             IQueryable<ApplicationUser> applicationusers = this.db.Users;
-            var result = applicationusers.ToDataSourceResult(
-                request,
-                c => new UsersViewModel { Id = c.Id, AuthorName = c.AuthorName, Email = c.Email });
+            var result = applicationusers.To<UsersViewModel>().ToDataSourceResult(request);
 
             return this.Json(result);
         }
@@ -43,7 +42,8 @@
                 var entity = new ApplicationUser
                                  {
                                      AuthorName = applicationUser.AuthorName,
-                                     Email = applicationUser.Email
+                                     Email = applicationUser.Email,
+                                     UserName = applicationUser.Email
                                  };
 
                 this.db.Users.Add(entity);
@@ -61,24 +61,22 @@
         [AcceptVerbs(HttpVerbs.Post)]
         public ActionResult ApplicationUsers_Update(
             [DataSourceRequest] DataSourceRequest request,
-            UsersViewModel applicationUser)
+            UsersViewModel model)
         {
-            var entity = new ApplicationUser
-                             {
-                                 Id = applicationUser.Id,
-                                 AuthorName = applicationUser.AuthorName,
-                                 Email = applicationUser.Email,
-                                 UserName = applicationUser.Email
-                             };
-
-            this.db.Users.Attach(entity);
-            this.db.Entry(entity).State = EntityState.Modified;
-            this.db.SaveChanges();
-
+            if (this.ModelState.IsValid)
+            {
+                var entity = db.Users.FirstOrDefault(x => x.Id == model.Id);
+                entity.AuthorName = model.AuthorName;
+                entity.Email = model.Email;
+                entity.UserName = model.Email;
+                this.db.Users.Attach(entity);
+                this.db.Entry(entity).State = EntityState.Modified;
+                this.db.SaveChanges();
+            }
             return this.Json(
                 new[]
                     {
-                        applicationUser
+                        model
                     }.ToDataSourceResult(request, this.ModelState));
         }
 
