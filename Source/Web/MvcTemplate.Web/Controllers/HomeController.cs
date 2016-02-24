@@ -24,7 +24,7 @@
             this.users = users;
         }
 
-        //[OutputCache(Duration = GlobalConstants.HomePageCacheDuration)]
+        [OutputCache(Duration = GlobalConstants.HomePageCacheDuration)]
         public ActionResult Index()
         {
             var totalUsers = this.users.GetUsersCount();
