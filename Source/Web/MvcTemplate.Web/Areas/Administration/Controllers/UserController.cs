@@ -34,32 +34,6 @@
         }
 
         [AcceptVerbs(HttpVerbs.Post)]
-        public ActionResult ApplicationUsers_Create(
-            [DataSourceRequest] DataSourceRequest request,
-            UsersViewModel applicationUser)
-        {
-            if (this.ModelState.IsValid)
-            {
-                var entity = new ApplicationUser
-                                 {
-                                     AuthorName = applicationUser.AuthorName,
-                                     Email = applicationUser.Email,
-                                     UserName = applicationUser.Email
-                                 };
-
-                this.db.Users.Add(entity);
-                this.db.SaveChanges();
-                applicationUser.Id = entity.Id;
-            }
-
-            return this.Json(
-                new[]
-                    {
-                        applicationUser
-                    }.ToDataSourceResult(request, this.ModelState));
-        }
-
-        [AcceptVerbs(HttpVerbs.Post)]
         public ActionResult ApplicationUsers_Update([DataSourceRequest] DataSourceRequest request, UsersViewModel model)
         {
             if (this.ModelState.IsValid)
@@ -68,6 +42,7 @@
                 entity.AuthorName = model.AuthorName;
                 entity.Email = model.Email;
                 entity.UserName = model.Email;
+
                 this.db.Users.Attach(entity);
                 this.db.Entry(entity).State = EntityState.Modified;
                 this.db.SaveChanges();
@@ -84,13 +59,7 @@
             [DataSourceRequest] DataSourceRequest request,
             UsersViewModel applicationUser)
         {
-            var entity = new ApplicationUser
-                             {
-                                 Id = applicationUser.Id,
-                                 AuthorName = applicationUser.AuthorName,
-                                 Email = applicationUser.Email,
-                                 UserName = applicationUser.Email
-                             };
+            var entity = this.Mapper.Map<ApplicationUser>(applicationUser);
 
             this.db.Users.Attach(entity);
             this.db.Users.Remove(entity);

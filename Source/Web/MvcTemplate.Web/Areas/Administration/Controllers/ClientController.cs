@@ -41,7 +41,7 @@
         {
             if (this.ModelState.IsValid)
             {
-                var entity = new Client { EIK = client.EIK, Name = client.Name, Address = client.Address };
+                var entity = this.Mapper.Map<Client>(client);
 
                 this.clients.Add(entity);
                 this.clients.Save();
@@ -80,7 +80,7 @@
         [AcceptVerbs(HttpVerbs.Post)]
         public ActionResult Clients_Destroy([DataSourceRequest] DataSourceRequest request, ClientViewModel client)
         {
-            var entity = new Client { Id = client.Id, EIK = client.EIK, Name = client.Name, Address = client.Address };
+            var entity = this.Mapper.Map<Client>(client);
 
             this.clients.HardDelete(entity);
             this.clients.Save();

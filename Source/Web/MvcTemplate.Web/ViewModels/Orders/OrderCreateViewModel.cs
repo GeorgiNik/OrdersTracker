@@ -29,6 +29,7 @@
 
         [Required]
         [AllowHtml]
+        [UIHint("FormString")]
         [Display(Name = "OrderPrice", ResourceType = typeof(App_GlobalResources.Orders.Order))]
         public decimal OrderPrice { get; set; }
 

@@ -15,6 +15,9 @@
         [Display(Name = "Name", ResourceType = typeof(UserInfo))]
         public string AuthorName { get; set; }
 
+        [Display(Name = "Username", ResourceType = typeof(UserInfo))]
+        public string UserName { get; set; }
+
         [Display(Name = "Email", ResourceType = typeof(UserInfo))]
         public string Email { get; set; }
 

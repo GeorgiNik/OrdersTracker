@@ -1,7 +1,7 @@
 ﻿@using reCAPTCHA.MVC
 @model MvcTemplate.Web.ViewModels.Account.RegisterViewModel
 @{
-    ViewBag.Title = "Register";
+    ViewBag.Title = "Регистрация";
 }
 
 <h2>@ViewBag.Title.</h2>
@@ -9,7 +9,7 @@
 @using (Html.BeginForm("Register", "Account", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
 {
     @Html.AntiForgeryToken()
-    <h4>Регистрация</h4>
+    
     <hr/>
     @Html.ValidationSummary("", new { @class = "text-danger" })
     <div class="form-group">
