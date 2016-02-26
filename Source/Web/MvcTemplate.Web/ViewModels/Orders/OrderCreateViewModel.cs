@@ -9,16 +9,18 @@
     using MvcTemplate.Data.Models;
     using MvcTemplate.Web.Infrastructure.Mapping;
 
-    public class OrderCreateViewModel : IMapFrom<Order>, IHaveCustomMappings
+    public class OrderCreateViewModel : IMapTo<Order>, IHaveCustomMappings
     {
         public int Id { get; set; }
 
         public int ClientId { get; set; }
 
+        [UIHint("FormDateTime")]
         public DateTime? Deadline { get; set; }
 
         [StringLength(500)]
         [AllowHtml]
+        [UIHint("FormString")]
         public string Description { get; set; }
 
         [Required]
@@ -26,37 +28,46 @@
         public decimal OrderPrice { get; set; }
 
         [AllowHtml]
+        [UIHint("FormDecimal")]
         public decimal PaidInAdvance { get; set; }
 
         [AllowHtml]
+        [UIHint("FormDecimal")]
         public decimal BillInCash { get; set; }
 
         [AllowHtml]
+        [UIHint("FormDecimal")]
         public decimal Receipt { get; set; }
 
         [AllowHtml]
+        [UIHint("FormDecimal")]
         public decimal PaidWithCard { get; set; }
 
         [AllowHtml]
+        [UIHint("FormDecimal")]
         public decimal Econt { get; set; }
 
         [AllowHtml]
+        [UIHint("FormDecimal")]
         public decimal PaidInCashWithoutReceipt { get; set; }
 
         [AllowHtml]
+        [UIHint("FormDecimal")]
         public decimal PaidBankTransaction { get; set; }
 
         [AllowHtml]
+        [UIHint("FormDecimal")]
         public decimal LeftToBePaid { get; set; }
 
+        [UIHint("FormDateTime")]
         public DateTime? PaidAt { get; set; }
 
+        [UIHint("FormDateTime")]
         public DateTime? DateOfComplition { get; set; }
 
         [AllowHtml]
+        [UIHint("FormDecimal")]
         public decimal Bonuses { get; set; }
-
-        public bool IsComplited { get; set; }
 
         [AllowHtml]
         public string ClientName { get; set; }

@@ -507,7 +507,6 @@
     <Content Include="Views\Shared\EditorTemplates\String.cshtml" />
     <Content Include="Views\Orders\Create.cshtml" />
     <Content Include="Views\Clients\Add.cshtml" />
-    <Content Include="Views\Shared\DisplayTemplates\CreatedOn.cshtml" />
     <Content Include="Views\Shared\EditorTemplates\PaidAt.cshtml" />
     <Content Include="Views\Error\NotFound.cshtml" />
     <Content Include="Views\Error\InternalError.cshtml" />
@@ -519,7 +518,6 @@
     <Content Include="Views\Shared\_NavigatianPartial.cshtml" />
     <Content Include="Views\Home\_HomePartial.cshtml" />
     <Content Include="Views\Clients\_AddButtonPartial.cshtml" />
-    <Content Include="Views\Shared\DisplayTemplates\TotalCount.cshtml" />
     <Content Include="Views\Shared\_CreateButtonPartial.cshtml" />
     <Content Include="Views\Shared\EditorTemplates\Currency.cshtml" />
     <Content Include="Views\Shared\EditorTemplates\Date.cshtml" />
@@ -532,6 +530,13 @@
     <Content Include="Views\Shared\EditorTemplates\Password.cshtml" />
     <Content Include="Views\Shared\EditorTemplates\Time.cshtml" />
     <Content Include="Views\Shared\EditorTemplates\Url.cshtml" />
+    <Content Include="Views\Shared\EditorTemplates\Id.cshtml" />
+    <Content Include="Views\Shared\EditorTemplates\DateDisabled.cshtml" />
+    <Content Include="Views\Shared\EditorTemplates\StringDisabled.cshtml" />
+    <Content Include="Views\Shared\DisplayTemplates\FormDecimal.cshtml" />
+    <Content Include="Views\Shared\DisplayTemplates\FormDateTime.cshtml" />
+    <Content Include="Views\Shared\DisplayTemplates\FormString.cshtml" />
+    <Content Include="Views\Shared\DisplayTemplates\FormMultiline.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Areas\Administration\Models\" />

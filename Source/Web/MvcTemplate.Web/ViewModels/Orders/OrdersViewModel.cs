@@ -9,13 +9,16 @@
     using MvcTemplate.Data.Models;
     using MvcTemplate.Web.Infrastructure.Mapping;
 
-    public class OrdersViewModel :  IMapFrom<Order>
+    public class OrdersViewModel : IMapTo<Order>, IMapFrom<Order>, IHaveCustomMappings
     {
+        [UIHint("Id")]
         public int Id { get; set; }
-
+        
+        [UIHint("DateDisabled")]
         public DateTime CreatedOn { get; set; }
 
         [AllowHtml]
+        [UIHint("StringDisabled")]
         public string Creator { get; set; }
 
         [AllowHtml]
@@ -25,7 +28,6 @@
         [AllowHtml]
         public string Description { get; set; }
 
-        
         public DateTime? Deadline { get; set; }
 
         [AllowHtml]
@@ -71,8 +73,8 @@
                 .ForMember(x => x.Creator, opt => opt.MapFrom(x => x.Author.AuthorName));
             configuration.CreateMap<Order, OrdersViewModel>()
                 .ForMember(x => x.ClientEIK, opt => opt.MapFrom(x => x.Client.EIK));
-
             configuration.CreateMap<Order, OrdersViewModel>().ForMember(x => x.Id, opt => opt.MapFrom(x => x.Id));
+            
         }
     }
 }

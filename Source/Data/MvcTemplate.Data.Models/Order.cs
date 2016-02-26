@@ -7,6 +7,14 @@
 
     public class Order : BaseModel<int>
     {
+        public Order()
+        {
+            if (this.DateOfComplition != null)
+            {
+                this.IsComplited = true;
+            }
+        }
+
         public string AuthorId { get; set; }
 
         public virtual ApplicationUser Author { get; set; }

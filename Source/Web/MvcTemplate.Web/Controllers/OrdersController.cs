@@ -5,6 +5,8 @@
     using System.Linq;
     using System.Web.Mvc;
 
+    using AutoMapper;
+
     using Kendo.Mvc.Extensions;
     using Kendo.Mvc.UI;
 
@@ -19,7 +21,7 @@
     using MvcTemplate.Web.ViewModels.Orders;
 
     [Authorize]
-    public class OrdersController : Controller
+    public class OrdersController : BaseController
     {
         private readonly IClientService clientService;
 
@@ -53,25 +55,9 @@
         [ValidateAntiForgeryToken]
         public ActionResult CreateOrder(OrderCreateViewModel model)
         {
-            var order = new Order
-                            {
-                                ClientId = model.ClientId,
-                                AuthorId = this.User.Identity.GetUserId(),
-                                Deadline = model.Deadline,
-                                PaidAt = model.PaidAt,
-                                BillInCash = model.BillInCash,
-                                Bonuses = model.Bonuses,
-                                Description = model.Description,
-                                Econt = model.Econt,
-                                LeftToBePaid = model.LeftToBePaid,
-                                Receipt = model.Receipt,
-                                PaidWithCard = model.PaidWithCard,
-                                PaidBankTransaction = model.PaidBankTransaction,
-                                PaidInCashWithoutReceipt = model.PaidInCashWithoutReceipt,
-                                PaidInAdvance = model.PaidInAdvance,
-                                OrderPrice = model.OrderPrice
-                            };
-            this.orderService.Add(order);
+            var newOrder = this.Mapper.Map<Order>(model);
+            newOrder.AuthorId = this.User.Identity.GetUserId();
+            this.orderService.Add(newOrder);
             this.TempData["Notification"] = "New order created!";
             return this.RedirectToAction(nameof(this.Create));
         }
@@ -90,7 +76,6 @@
             {
                 var entity = this.orderService.GetById(order.Id);
 
-                entity.Id = order.Id;
                 entity.Deadline = order.Deadline;
                 entity.Description = order.Description;
                 entity.OrderPrice = order.OrderPrice;
@@ -106,6 +91,7 @@
                 entity.DateOfComplition = order.DateOfComplition;
                 entity.Bonuses = order.Bonuses;
                 entity.IsComplited = order.IsComplited;
+                
 
                 this.orders.Update(entity);
                 this.orders.Save();

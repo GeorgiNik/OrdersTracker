@@ -9,11 +9,12 @@
     using MvcTemplate.Common;
     using MvcTemplate.Data.Common;
     using MvcTemplate.Data.Models;
+    using MvcTemplate.Web.Controllers;
     using MvcTemplate.Web.Infrastructure.Mapping;
     using MvcTemplate.Web.ViewModels.Client;
 
     [Authorize(Roles = GlobalConstants.AdministratorRoleName)]
-    public class ClientController : Controller
+    public class ClientController : BaseController
     {
         private readonly IDbRepository<Client> clients;
 

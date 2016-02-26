@@ -5,11 +5,12 @@
 
     using MvcTemplate.Common;
     using MvcTemplate.Services.Data.Contracts;
+    using MvcTemplate.Web.Controllers;
     using MvcTemplate.Web.Infrastructure.Mapping;
     using MvcTemplate.Web.ViewModels.Orders;
 
     [Authorize(Roles = GlobalConstants.AdministratorRoleName)]
-    public class IncomeController : Controller
+    public class IncomeController : BaseController
     {
         private readonly IClientService clientService;
 

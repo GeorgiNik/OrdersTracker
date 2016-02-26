@@ -12,10 +12,11 @@
     using MvcTemplate.Data;
     using MvcTemplate.Data.Models;
     using MvcTemplate.Web.Areas.Administration.ViewModels;
+    using MvcTemplate.Web.Controllers;
     using MvcTemplate.Web.Infrastructure.Mapping;
 
     [Authorize(Roles = GlobalConstants.AdministratorRoleName)]
-    public class UserController : Controller
+    public class UserController : BaseController
     {
         private readonly ApplicationDbContext db = new ApplicationDbContext();
 

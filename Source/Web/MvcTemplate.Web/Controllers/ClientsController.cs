@@ -8,7 +8,7 @@
     using MvcTemplate.Web.ViewModels.Client;
 
     [Authorize]
-    public class ClientsController : Controller
+    public class ClientsController : BaseController
     {
         private readonly IClientService clientService;
 
@@ -31,7 +31,7 @@
         {
             if (this.ModelState.IsValid)
             {
-                var client = new Client { EIK = model.EIK, Address = model.Address, Name = model.Name };
+                var client = this.Mapper.Map<Client>(model);
                 this.clientService.Add(client);
                 this.TempData["Notification"] = "New client added!";
             }

@@ -5,9 +5,9 @@
 {
     @Html.AntiForgeryToken()
     @Html.ValidationSummary("", new { @class = "text-danger" })
-    @Html.EditorFor(x => x.Name)
-    @Html.EditorFor(x => x.Address)
-    @Html.EditorFor(x => x.EIK)
+    @Html.DisplayFor(x => x.Name)
+    @Html.DisplayFor(x => x.EIK)
+    @Html.DisplayFor(x => x.Address)
     @Html.Partial("_AddButtonPartial")
     
 }
