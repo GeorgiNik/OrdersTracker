@@ -17,75 +17,75 @@
         public int ClientId { get; set; }
 
         [UIHint("FormDateTime")]
-        [DisplayName("Краен срок")]
+        [Display(Name = "Deadline", ResourceType = typeof(App_GlobalResources.Orders.Order))]
         public DateTime? Deadline { get; set; }
 
         [StringLength(500)]
         [AllowHtml]
         [UIHint("FormString")]
-        [DisplayName("Описание")]
+        [Display(Name = "Description", ResourceType = typeof(App_GlobalResources.Orders.Order))]
         public string Description { get; set; }
 
         [Required]
         [AllowHtml]
-        [DisplayName("Стойност на поръчката")]
+        [Display(Name = "OrderPrice", ResourceType = typeof(App_GlobalResources.Orders.Order))]
         public decimal OrderPrice { get; set; }
 
         [AllowHtml]
         [UIHint("FormDecimal")]
-        [DisplayName("Платен аванс")]
+        [Display(Name = "PaidInAdvance", ResourceType = typeof(App_GlobalResources.Orders.Order))]
         public decimal PaidInAdvance { get; set; }
 
         [AllowHtml]
         [UIHint("FormDecimal")]
-        [DisplayName("Фактура в брой")]
+        [Display(Name = "BillInCash", ResourceType = typeof(App_GlobalResources.Orders.Order))]
         public decimal BillInCash { get; set; }
 
         [AllowHtml]
         [UIHint("FormDecimal")]
-        [DisplayName("Касова бележка")]
+        [Display(Name = "Receipt", ResourceType = typeof(App_GlobalResources.Orders.Order))]
         public decimal Receipt { get; set; }
 
         [AllowHtml]
         [UIHint("FormDecimal")]
-        [DisplayName("Платено с карта")]
+        [Display(Name = "PaidWithCard", ResourceType = typeof(App_GlobalResources.Orders.Order))]
         public decimal PaidWithCard { get; set; }
 
         [AllowHtml]
         [UIHint("FormDecimal")]
-        [DisplayName("С еконт")]
+        [Display(Name = "Econt", ResourceType = typeof(App_GlobalResources.Orders.Order))]
         public decimal Econt { get; set; }
 
         [AllowHtml]
         [UIHint("FormDecimal")]
-        [DisplayName("В брой без документ")]
+        [Display(Name = "PaidInCashWithouotReceipt", ResourceType = typeof(App_GlobalResources.Orders.Order))]
         public decimal PaidInCashWithoutReceipt { get; set; }
 
         [AllowHtml]
         [UIHint("FormDecimal")]
-        [DisplayName("Фактура по банка")]
+        [Display(Name = "PaidBankTransaction", ResourceType = typeof(App_GlobalResources.Orders.Order))]
         public decimal PaidBankTransaction { get; set; }
 
         [AllowHtml]
         [UIHint("FormDecimal")]
-        [DisplayName("Доплащане")]
+        [Display(Name = "LeftToBePaid", ResourceType = typeof(App_GlobalResources.Orders.Order))]
         public decimal LeftToBePaid { get; set; }
 
         [UIHint("FormDateTime")]
-        [DisplayName("Платено на")]
+        [Display(Name = "PaidAt", ResourceType = typeof(App_GlobalResources.Orders.Order))]
         public DateTime? PaidAt { get; set; }
 
         [UIHint("FormDateTime")]
-        [DisplayName("Изпълнена дата")]
+        [Display(Name = "DateOfComplition", ResourceType = typeof(App_GlobalResources.Orders.Order))]
         public DateTime? DateOfComplition { get; set; }
 
         [AllowHtml]
         [UIHint("FormDecimal")]
-        [DisplayName("Бонуси")]
+        [Display(Name = "Bonuses", ResourceType = typeof(App_GlobalResources.Orders.Order))]
         public decimal Bonuses { get; set; }
 
         [AllowHtml]
-        [DisplayName("Име на клиент")]
+        [Display(Name = "Name", ResourceType = typeof(App_GlobalResources.Clients.Client))]
         public string ClientName { get; set; }
 
         public void CreateMappings(IMapperConfiguration configuration)

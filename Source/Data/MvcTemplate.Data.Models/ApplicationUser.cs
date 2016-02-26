@@ -1,6 +1,7 @@
 ﻿namespace MvcTemplate.Data.Models
 {
     using System.Collections.Generic;
+    using System.ComponentModel.DataAnnotations;
     using System.Security.Claims;
     using System.Threading.Tasks;
 
@@ -16,7 +17,8 @@
         {
             this.Orders = new HashSet<Order>();
         }
-
+        [MaxLength(70)]
+        [MinLength(2)]
         public string AuthorName { get; set; }
 
         public ICollection<Order> Orders { get; set; }

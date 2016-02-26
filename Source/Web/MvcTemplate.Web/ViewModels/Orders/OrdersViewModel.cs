@@ -3,12 +3,14 @@
     using System;
     using System.ComponentModel;
     using System.ComponentModel.DataAnnotations;
+    using System.Security.AccessControl;
     using System.Web.Mvc;
 
     using AutoMapper;
 
     using MvcTemplate.Data.Models;
     using MvcTemplate.Web.Infrastructure.Mapping;
+    
 
     public class OrdersViewModel : IMapTo<Order>, IMapFrom<Order>, IHaveCustomMappings
     {
@@ -16,74 +18,76 @@
         public int Id { get; set; }
         
         [UIHint("DateDisabled")]
-        [DisplayName("Дата")]
+        [Display(Name = "Deadline", ResourceType = typeof(App_GlobalResources.Orders.Order))]
         public DateTime CreatedOn { get; set; }
 
         [AllowHtml]
         [UIHint("StringDisabled")]
-        [DisplayName("Дизайнер")]
+        [Display(Name = "Creator", ResourceType = typeof(App_GlobalResources.Orders.Order))]
         public string Creator { get; set; }
 
         [AllowHtml]
-        [DisplayName("клиент ЕИК")]
+        [Display(Name = "ClientEIK", ResourceType = typeof(App_GlobalResources.Clients.Client))]
         public string ClientEIK { get; set; }
 
         [MaxLength(500)]
-        [DisplayName("Описание")]
+        [Display(Name = "Description", ResourceType = typeof(App_GlobalResources.Orders.Order))]
         [AllowHtml]
         public string Description { get; set; }
 
-        [DisplayName("Краен срок")]
+        [Display(Name = "Deadline", ResourceType = typeof(App_GlobalResources.Orders.Order))]
         public DateTime? Deadline { get; set; }
 
         [AllowHtml]
         [Required]
-        [DisplayName("Стойност на поръчката")]
+        [Display(Name = "OrderPrice", ResourceType = typeof(App_GlobalResources.Orders.Order))]
         public decimal OrderPrice { get; set; }
 
         [AllowHtml]
-        [DisplayName("Платен аванс")]
+        [Display(Name = "PaidInAdvance", ResourceType = typeof(App_GlobalResources.Orders.Order))]
         public decimal PaidInAdvance { get; set; }
 
         [AllowHtml]
-        [DisplayName("Фактура в брой")]
+        [Display(Name = "BillInCash", ResourceType = typeof(App_GlobalResources.Orders.Order))]
         public decimal BillInCash { get; set; }
 
+        
+        [Display(Name = "Receipt", ResourceType = typeof(App_GlobalResources.Orders.Order))]
         [AllowHtml]
-        [DisplayName("Касова бележка")]
         public decimal Receipt { get; set; }
 
         [AllowHtml]
-        [DisplayName("Платено с карта")]
+        [Display(Name = "PaidWithCard", ResourceType = typeof(App_GlobalResources.Orders.Order))]
         public decimal PaidWithCard { get; set; }
 
         [AllowHtml]
-        [DisplayName("С еконт")]
+        [Display(Name = "Econt", ResourceType = typeof(App_GlobalResources.Orders.Order))]
         public decimal Econt { get; set; }
 
         [AllowHtml]
-        [DisplayName("В брой без документ")]
+
+        [Display(Name = "PaidInCashWithouotReceipt", ResourceType = typeof(App_GlobalResources.Orders.Order))]
         public decimal PaidInCashWithoutReceipt { get; set; }
 
         [AllowHtml]
-        [DisplayName("Фактура по банка")]
+        [Display(Name = "PaidBankTransaction", ResourceType = typeof(App_GlobalResources.Orders.Order))]
         public decimal PaidBankTransaction { get; set; }
 
         [AllowHtml]
-        [DisplayName("Доплащане")]
+        [Display(Name = "LeftToBePaid", ResourceType = typeof(App_GlobalResources.Orders.Order))]
         public decimal LeftToBePaid { get; set; }
 
-        [DisplayName("Платено на")]
+        [Display(Name = "PaidAt", ResourceType = typeof(App_GlobalResources.Orders.Order))]
         public DateTime? PaidAt { get; set; }
 
-        [DisplayName("Изпълнена дата")]
+        [Display(Name = "DateOfComplition", ResourceType = typeof(App_GlobalResources.Orders.Order))]
         public DateTime? DateOfComplition { get; set; }
 
         [AllowHtml]
-        [DisplayName("Бонуси")]
+        [Display(Name = "Bonuses", ResourceType = typeof(App_GlobalResources.Orders.Order))]
         public decimal Bonuses { get; set; }
 
-        [DisplayName("Завършена")]
+        [Display(Name = "IsComplited", ResourceType = typeof(App_GlobalResources.Orders.Order))]
         public bool IsComplited { get; set; }
 
         public void CreateMappings(IMapperConfiguration configuration)

@@ -12,7 +12,9 @@
     using MvcTemplate.Data.Models;
     using MvcTemplate.Web.ViewModels.Account;
 
-    using Recaptcha;
+    using reCAPTCHA.MVC;
+
+    
 
     [Authorize]
     public class AccountController : BaseController
@@ -84,7 +86,7 @@
             // This doesn't count login failures towards account lockout
             // To enable password failures to trigger account lockout, change to shouldLockout: true
             var result =
-                await this.SignInManager.PasswordSignInAsync(model.Email, model.Password, model.RememberMe, false);
+                await this.SignInManager.PasswordSignInAsync(model.Username, model.Password, model.RememberMe, false);
             switch (result)
             {
                 case SignInStatus.Success:
@@ -161,12 +163,12 @@
         [HttpPost]
         [AllowAnonymous]
         [ValidateAntiForgeryToken]
-        [RecaptchaControlMvc.CaptchaValidatorAttribute]
+        [CaptchaValidator]
         public async Task<ActionResult> Register(RegisterViewModel model, bool captchaValid)
         {
             if (this.ModelState.IsValid)
             {
-                var user = new ApplicationUser { UserName = model.Email, Email = model.Email, AuthorName = model.Name };
+                var user = new ApplicationUser { UserName = model.Username, Email = model.Email, AuthorName = model.Name };
                 var result = await this.UserManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {
@@ -179,10 +181,7 @@
                     // await UserManager.SendEmailAsync(user.Id, "Confirm your account", "Please confirm your account by clicking <a href=\"" + callbackUrl + "\">here</a>");
                     return this.RedirectToAction("Index", "Home");
                 }
-                if (!captchaValid)
-                {
-                    this.ModelState.AddModelError("Captcha", "Invalid captcha");
-                }
+                
 
                 this.AddErrors(result);
             }

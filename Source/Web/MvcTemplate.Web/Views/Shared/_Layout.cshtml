@@ -11,12 +11,16 @@
 </head>
 <body>
     @Html.Partial("_NavigatianPartial")
-    <div class="container body-content">
-        @Html.Partial("_NotificationPartial")
-        @RenderBody()
-        @Html.Partial("_FooterPartial")
-    </div>
+<div class="container body-content">
+    @Html.Partial("_NotificationPartial")
+    @RenderBody()
+    @Html.Partial("_FooterPartial")
+</div>
+    @section customScripts{
+        <script src='https://www.google.com/recaptcha/api.js'></script>
+    }
     @RenderSection("scripts", false)
     @RenderSection("customScripts", required: false)
+    
 </body>
 </html>

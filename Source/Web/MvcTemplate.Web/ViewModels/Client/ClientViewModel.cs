@@ -16,7 +16,7 @@
         [Required]
         [AllowHtml]
         [UIHint("FormString")]
-        [DisplayName("ЕИК")]
+        [Display(Name = "ClientEIK", ResourceType = typeof(App_GlobalResources.Clients.Client))]
         public string EIK { get; set; }
 
         [MaxLength(70)]
@@ -24,13 +24,13 @@
         [AllowHtml]
         [Required]
         [UIHint("FormString")]
-        [DisplayName("Име")]
+        [Display(Name = "Name", ResourceType = typeof(App_GlobalResources.Clients.Client))]
         public string Name { get; set; }
 
         [MaxLength(100)]
         [AllowHtml]
         [UIHint("FormMultiline")]
-        [DisplayName("Адрес")]
+        [Display(Name = "Address", ResourceType = typeof(App_GlobalResources.Clients.Client))]
         public string Address { get; set; }
     }
 }
