@@ -1,6 +1,7 @@
 ﻿namespace MvcTemplate.Web.Areas.Administration.Controllers
 {
     using System;
+    using System.Linq;
     using System.Web.Mvc;
 
     using Kendo.Mvc.Extensions;
@@ -30,8 +31,8 @@
 
         public ActionResult Clients_Read([DataSourceRequest] DataSourceRequest request)
         {
-            var clients = this.clients.All();
-            var result = clients.To<ClientViewModel>().ToDataSourceResult(request);
+            
+            var result =this.clients.All().To<ClientViewModel>().ToDataSourceResult(request);
 
             return this.Json(result);
         }
@@ -82,7 +83,7 @@
         {
             var entity = this.Mapper.Map<Client>(client);
 
-            this.clients.HardDelete(entity);
+            this.clients.Delete(entity.Id);
             this.clients.Save();
 
             return this.Json(
