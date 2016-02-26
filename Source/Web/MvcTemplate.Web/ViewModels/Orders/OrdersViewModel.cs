@@ -9,10 +9,10 @@
     using MvcTemplate.Data.Models;
     using MvcTemplate.Web.Infrastructure.Mapping;
 
-    public class OrdersViewModel : IHaveCustomMappings, IMapFrom<Order>
+    public class OrdersViewModel :  IMapFrom<Order>
     {
         public int Id { get; set; }
-        [UIHint("CreatedOn")]
+
         public DateTime CreatedOn { get; set; }
 
         [AllowHtml]
@@ -25,8 +25,7 @@
         [AllowHtml]
         public string Description { get; set; }
 
-        [UIHint("Deadline")]
-        [DataType(DataType.Date)]
+        
         public DateTime? Deadline { get; set; }
 
         [AllowHtml]
@@ -57,12 +56,8 @@
         [AllowHtml]
         public decimal LeftToBePaid { get; set; }
 
-        
-        
         public DateTime? PaidAt { get; set; }
 
-        [DataType(DataType.DateTime)]
-        [UIHint("CompletionDate")]
         public DateTime? DateOfComplition { get; set; }
 
         [AllowHtml]

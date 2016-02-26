@@ -504,15 +504,11 @@
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Scripts\jquery-2.2.0.min.map" />
     <Content Include="Views\Orders\Index.cshtml" />
-    <Content Include="Views\Shared\EditorTemplates\OrdersViewModel.cshtml" />
-    <Content Include="Views\Shared\EditorTemplates\Deadline.cshtml" />
-    <Content Include="Views\Shared\EditorTemplates\Decimal.cshtml" />
     <Content Include="Views\Shared\EditorTemplates\String.cshtml" />
     <Content Include="Views\Orders\Create.cshtml" />
     <Content Include="Views\Clients\Add.cshtml" />
     <Content Include="Views\Shared\DisplayTemplates\CreatedOn.cshtml" />
     <Content Include="Views\Shared\EditorTemplates\PaidAt.cshtml" />
-    <Content Include="Views\Shared\EditorTemplates\CompletionDate.cshtml" />
     <Content Include="Views\Error\NotFound.cshtml" />
     <Content Include="Views\Error\InternalError.cshtml" />
     <Content Include="Views\Shared\_NavbarPartial.cshtml" />
@@ -525,6 +521,17 @@
     <Content Include="Views\Clients\_AddButtonPartial.cshtml" />
     <Content Include="Views\Shared\DisplayTemplates\TotalCount.cshtml" />
     <Content Include="Views\Shared\_CreateButtonPartial.cshtml" />
+    <Content Include="Views\Shared\EditorTemplates\Currency.cshtml" />
+    <Content Include="Views\Shared\EditorTemplates\Date.cshtml" />
+    <Content Include="Views\Shared\EditorTemplates\DateTime.cshtml" />
+    <Content Include="Views\Shared\EditorTemplates\Email.cshtml" />
+    <Content Include="Views\Shared\EditorTemplates\EmailAddress.cshtml" />
+    <Content Include="Views\Shared\EditorTemplates\GridForeignKey.cshtml" />
+    <Content Include="Views\Shared\EditorTemplates\Integer.cshtml" />
+    <Content Include="Views\Shared\EditorTemplates\Number.cshtml" />
+    <Content Include="Views\Shared\EditorTemplates\Password.cshtml" />
+    <Content Include="Views\Shared\EditorTemplates\Time.cshtml" />
+    <Content Include="Views\Shared\EditorTemplates\Url.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Areas\Administration\Models\" />
