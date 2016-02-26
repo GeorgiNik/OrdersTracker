@@ -7,6 +7,7 @@
         // For more information on bundling, visit http://go.microsoft.com/fwlink/?LinkId=301862
         public static void RegisterBundles(BundleCollection bundles)
         {
+            BundleTable.EnableOptimizations = true;
             RegisterScripts(bundles);
             RegisterStyles(bundles);
         }
@@ -18,7 +19,7 @@
             bundles.Add(new ScriptBundle("~/bundles/bootstrap").Include("~/Scripts/bootstrap.js"));
             bundles.Add(new ScriptBundle("~/bundles/jqueryui").Include("~/Scripts/jquery-ui-1.11.4.min.js"));
             bundles.Add(
-                new ScriptBundle("~/bundles/kendo").Include(
+                new ScriptBundle("~/bundles/KendoUI/kendo").Include(
                     "~/Scripts/KendoUI/kendo.all.min.js",
                     "~/Scripts/KendoUI/kendo.aspnetmvc.min.js"));
         }
@@ -28,7 +29,7 @@
             bundles.Add(new StyleBundle("~/Content/css").Include("~/Content/bootstrap.min.css", "~/Content/site.css"));
             bundles.Add(new StyleBundle("~/Content/datepicker").Include("~/Content/themes/base/datepicker.css"));
             bundles.Add(
-                new StyleBundle("~/Content/kendo").Include(
+                new StyleBundle("~/Content/KendoUI/kendo").Include(
                     "~/Content/KendoUI/kendo.common.min.css",
                     "~/Content/KendoUI/kendo.default.min.css"));
         }

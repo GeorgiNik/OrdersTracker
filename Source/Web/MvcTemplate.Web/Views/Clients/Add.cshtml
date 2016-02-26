@@ -1,4 +1,7 @@
-﻿<h2>Add Client</h2>
+﻿@{
+    ViewBag.Title = "Добавяне на клиент";
+}
+<h3>@ViewBag.Title</h3>
 @model MvcTemplate.Web.ViewModels.Client.ClientViewModel
 
 @using (Html.BeginForm("AddClient", "Clients", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))

@@ -1,4 +1,7 @@
-﻿<h2>Create Order</h2>
+﻿@{
+    ViewBag.Title = "Създаване на поръчка";
+}
+<h3>@ViewBag.Title</h3>
 @model MvcTemplate.Web.ViewModels.Orders.OrderCreateViewModel
 
 @using (Html.BeginForm("CreateOrder", "Orders", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
@@ -10,7 +13,7 @@
     <div class="form-group">
         @Html.LabelFor(m => m.ClientName, new { @class = "col-md-2 control-label" })
         <div class="col-md-10">
-            @Html.DropDownListFor(x => x.ClientId, (IEnumerable<SelectListItem>)ViewBag.Clients, "Select client", new { @class = "form-control" })
+            @Html.DropDownListFor(x => x.ClientId, (IEnumerable<SelectListItem>)ViewBag.Clients, "Избиране на клиент", new { @class = "form-control" })
         </div>
     </div>
     
