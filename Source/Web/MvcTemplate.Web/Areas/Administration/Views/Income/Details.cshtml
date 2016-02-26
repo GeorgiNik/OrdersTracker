@@ -7,11 +7,14 @@
         months.Add(month);
     }
 }
-@using (Ajax.BeginForm("Search", null, new AjaxOptions { UpdateTargetId = "results", InsertionMode = InsertionMode.Replace, HttpMethod = "POST" }, new { @class = "form form-inline" }))
+@using (Html.BeginForm("Search", null,null,FormMethod.Post, new { @class = "form form-inline" }))
 {
     <div clas="form-group">
+        @Html.Label("Стойност за поръчки за месец:")
+        <br/>
         @Html.DropDownList("query", months, new { @class = "form-control" })
         <input type="submit" class="btn btn-info"/>
     </div>
 }
-<div id="results">@Html.Partial("_SearchPartial", Model)</div>
+<br/>
+<div id="results"><b>Резултат : @Model</b></div>

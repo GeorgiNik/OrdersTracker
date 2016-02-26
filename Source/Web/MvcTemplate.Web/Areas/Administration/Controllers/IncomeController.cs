@@ -33,14 +33,14 @@
             var result = 0M;
             if (!int.TryParse(query, out month))
             {
-                return this.PartialView("_SearchPartial", result);
+                return this.View(nameof(this.Details),result);
             }
             var orders =
                 this.orderService.GetAll().To<OrdersViewModel>().Where(x => x.CreatedOn.Month == month).ToList();
 
             result = orders.Sum(x => x.OrderPrice);
 
-            return this.PartialView("_SearchPartial", result);
+            return this.View(nameof(this.Details),result);
         }
     }
 }
