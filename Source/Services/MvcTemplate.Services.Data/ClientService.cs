@@ -8,9 +8,9 @@
 
     public class ClientService : IClientService
     {
-        private  IDbRepository<Client> clients;
+        private readonly IDbRepository<Client> clients;
 
-        private  IDbRepository<Order> orders;
+        private readonly IDbRepository<Order> orders;
 
         public ClientService(IDbRepository<Order> orders, IDbRepository<Client> clients)
         {

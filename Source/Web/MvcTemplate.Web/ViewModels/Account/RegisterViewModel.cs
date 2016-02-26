@@ -25,7 +25,8 @@
         public string Email { get; set; }
 
         [Required]
-        [StringLength(100, ErrorMessageResourceName = "InvalidLenght", ErrorMessageResourceType = typeof(Error), MinimumLength = 6)]
+        [StringLength(100, ErrorMessageResourceName = "InvalidLenght", ErrorMessageResourceType = typeof(Error),
+            MinimumLength = 6)]
         [DataType(DataType.Password)]
         [Display(Name = "Password", ResourceType = typeof(UserInfo))]
         public string Password { get; set; }

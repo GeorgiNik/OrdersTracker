@@ -1,7 +1,6 @@
 ﻿namespace MvcTemplate.Services.Data
 {
     using System.Linq;
-    using System.Runtime.InteropServices;
 
     using MvcTemplate.Data.Common;
     using MvcTemplate.Data.Models;
@@ -9,7 +8,7 @@
 
     public class OrderService : IOrderService
     {
-        private IDbRepository<Order> orders;
+        private readonly IDbRepository<Order> orders;
 
         public OrderService(IDbRepository<Order> orders)
         {

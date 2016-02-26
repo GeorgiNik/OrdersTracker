@@ -25,9 +25,18 @@
 
         public ActionResult Index()
         {
-            var totalUsers = this.Cache.Get("users", () => this.users.GetUsersCount(), GlobalConstants.HomePageCacheDuration);
-            var totalOrders = this.Cache.Get("orders", () => this.orders.GetAll().Count(), GlobalConstants.HomePageCacheDuration);
-            var totalClients = this.Cache.Get("clients", () => this.clients.GetAll().Count(), GlobalConstants.HomePageCacheDuration);
+            var totalUsers = this.Cache.Get(
+                "users",
+                () => this.users.GetUsersCount(),
+                GlobalConstants.HomePageCacheDuration);
+            var totalOrders = this.Cache.Get(
+                "orders",
+                () => this.orders.GetAll().Count(),
+                GlobalConstants.HomePageCacheDuration);
+            var totalClients = this.Cache.Get(
+                "clients",
+                () => this.clients.GetAll().Count(),
+                GlobalConstants.HomePageCacheDuration);
             var viewModel = new HomeViewModel
                                 {
                                     ClientsCount = totalClients,

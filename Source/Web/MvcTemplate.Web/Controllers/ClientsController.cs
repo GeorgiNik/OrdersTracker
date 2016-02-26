@@ -3,7 +3,6 @@
     using System.Web.Mvc;
 
     using MvcTemplate.Data.Models;
-    using MvcTemplate.Services.Data;
     using MvcTemplate.Services.Data.Contracts;
     using MvcTemplate.Web.ViewModels.Client;
 

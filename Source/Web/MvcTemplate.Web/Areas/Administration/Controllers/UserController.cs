@@ -60,13 +60,11 @@
         }
 
         [AcceptVerbs(HttpVerbs.Post)]
-        public ActionResult ApplicationUsers_Update(
-            [DataSourceRequest] DataSourceRequest request,
-            UsersViewModel model)
+        public ActionResult ApplicationUsers_Update([DataSourceRequest] DataSourceRequest request, UsersViewModel model)
         {
             if (this.ModelState.IsValid)
             {
-                var entity = db.Users.FirstOrDefault(x => x.Id == model.Id);
+                var entity = this.db.Users.FirstOrDefault(x => x.Id == model.Id);
                 entity.AuthorName = model.AuthorName;
                 entity.Email = model.Email;
                 entity.UserName = model.Email;

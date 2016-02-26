@@ -1,22 +1,21 @@
 ﻿namespace MvcTemplate.Web.ViewModels.Orders
 {
     using System;
-    using System.ComponentModel;
     using System.ComponentModel.DataAnnotations;
-    using System.Security.AccessControl;
     using System.Web.Mvc;
 
     using AutoMapper;
 
     using MvcTemplate.Data.Models;
     using MvcTemplate.Web.Infrastructure.Mapping;
-    
+
+    using Client = MvcTemplate.Web.App_GlobalResources.Clients.Client;
 
     public class OrdersViewModel : IMapTo<Order>, IMapFrom<Order>, IHaveCustomMappings
     {
         [UIHint("Id")]
         public int Id { get; set; }
-        
+
         [UIHint("DateDisabled")]
         [Display(Name = "Deadline", ResourceType = typeof(App_GlobalResources.Orders.Order))]
         public DateTime CreatedOn { get; set; }
@@ -27,7 +26,7 @@
         public string Creator { get; set; }
 
         [AllowHtml]
-        [Display(Name = "ClientEIK", ResourceType = typeof(App_GlobalResources.Clients.Client))]
+        [Display(Name = "ClientEIK", ResourceType = typeof(Client))]
         public string ClientEIK { get; set; }
 
         [MaxLength(500)]
@@ -51,7 +50,6 @@
         [Display(Name = "BillInCash", ResourceType = typeof(App_GlobalResources.Orders.Order))]
         public decimal BillInCash { get; set; }
 
-        
         [Display(Name = "Receipt", ResourceType = typeof(App_GlobalResources.Orders.Order))]
         [AllowHtml]
         public decimal Receipt { get; set; }
@@ -65,7 +63,6 @@
         public decimal Econt { get; set; }
 
         [AllowHtml]
-
         [Display(Name = "PaidInCashWithouotReceipt", ResourceType = typeof(App_GlobalResources.Orders.Order))]
         public decimal PaidInCashWithoutReceipt { get; set; }
 
@@ -97,7 +94,6 @@
             configuration.CreateMap<Order, OrdersViewModel>()
                 .ForMember(x => x.ClientEIK, opt => opt.MapFrom(x => x.Client.EIK));
             configuration.CreateMap<Order, OrdersViewModel>().ForMember(x => x.Id, opt => opt.MapFrom(x => x.Id));
-            
         }
     }
 }

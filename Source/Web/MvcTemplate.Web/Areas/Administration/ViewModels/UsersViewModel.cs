@@ -5,10 +5,10 @@
     using AutoMapper;
 
     using MvcTemplate.Data.Models;
+    using MvcTemplate.Web.App_GlobalResources.Users;
     using MvcTemplate.Web.Infrastructure.Mapping;
-    using App_GlobalResources.Users;
 
-    public class UsersViewModel : IMapFrom<ApplicationUser>, IHaveCustomMappings,IMapTo<ApplicationUser>
+    public class UsersViewModel : IMapFrom<ApplicationUser>, IHaveCustomMappings, IMapTo<ApplicationUser>
     {
         public string Id { get; set; }
 
@@ -17,7 +17,7 @@
 
         [Display(Name = "Email", ResourceType = typeof(UserInfo))]
         public string Email { get; set; }
-        
+
         public void CreateMappings(IMapperConfiguration configuration)
         {
             configuration.CreateMap<ApplicationUser, UsersViewModel>()

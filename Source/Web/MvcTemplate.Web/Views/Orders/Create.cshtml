@@ -16,9 +16,9 @@
             @Html.DropDownListFor(x => x.ClientId, (IEnumerable<SelectListItem>)ViewBag.Clients, "Избиране на клиент", new { @class = "form-control" })
         </div>
     </div>
-    
+
     @Html.DisplayFor(x => x.Description)
-    @Html.DisplayFor(x=>x.Deadline)
+    @Html.DisplayFor(x => x.Deadline)
     @Html.DisplayFor(x => x.OrderPrice)
     @Html.DisplayFor(x => x.PaidInAdvance)
     @Html.DisplayFor(x => x.BillInCash)
@@ -32,7 +32,6 @@
     @Html.DisplayFor(x => x.DateOfComplition)
     @Html.DisplayFor(x => x.Bonuses)
     @Html.Partial("_CreateButtonPartial")
-    
 }
 
 @section Scripts {

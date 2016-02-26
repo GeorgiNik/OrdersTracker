@@ -14,8 +14,6 @@
 
     using reCAPTCHA.MVC;
 
-    
-
     [Authorize]
     public class AccountController : BaseController
     {
@@ -168,7 +166,12 @@
         {
             if (this.ModelState.IsValid)
             {
-                var user = new ApplicationUser { UserName = model.Username, Email = model.Email, AuthorName = model.Name };
+                var user = new ApplicationUser
+                               {
+                                   UserName = model.Username,
+                                   Email = model.Email,
+                                   AuthorName = model.Name
+                               };
                 var result = await this.UserManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {
@@ -181,7 +184,6 @@
                     // await UserManager.SendEmailAsync(user.Id, "Confirm your account", "Please confirm your account by clicking <a href=\"" + callbackUrl + "\">here</a>");
                     return this.RedirectToAction("Index", "Home");
                 }
-                
 
                 this.AddErrors(result);
             }

@@ -1,5 +1,4 @@
-﻿@using MvcTemplate.Web.ViewModels.Account
-@model MvcTemplate.Web.ViewModels.Account.LoginViewModel
+﻿@model MvcTemplate.Web.ViewModels.Account.LoginViewModel
 @{
     ViewBag.Title = "Log in";
 }
@@ -11,7 +10,7 @@
             @using (Html.BeginForm("Login", "Account", new { ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
             {
                 @Html.AntiForgeryToken()
-                
+
                 <hr/>
                 @Html.ValidationSummary(true, "", new { @class = "text-danger" })
                 <div class="form-group">
@@ -44,11 +43,10 @@
                 <p>
                     @Html.ActionLink("Регистрация на нов потребител", "Register")
                 </p>
-              
             }
         </section>
     </div>
-  
+
 </div>
 
 @section Scripts {

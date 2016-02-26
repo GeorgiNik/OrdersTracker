@@ -1,18 +1,17 @@
-﻿@model Decimal?
+﻿@model decimal?
 @{
     ICollection<SelectListItem> months = new List<SelectListItem>();
-    for (int i = 1; i < 12; i++)
+    for (var i = 1; i < 12; i++)
     {
-        var month = new SelectListItem() { Text = i.ToString(), Value = i.ToString() };
+        var month = new SelectListItem { Text = i.ToString(), Value = i.ToString() };
         months.Add(month);
     }
 }
-@using (Ajax.BeginForm("Search",null, new AjaxOptions { UpdateTargetId = "results", InsertionMode = InsertionMode.Replace, HttpMethod = "POST" },new {@class="form form-inline"}))
+@using (Ajax.BeginForm("Search", null, new AjaxOptions { UpdateTargetId = "results", InsertionMode = InsertionMode.Replace, HttpMethod = "POST" }, new { @class = "form form-inline" }))
 {
     <div clas="form-group">
-        @Html.DropDownList("query", months,new {@class="form-control"})
-        <input type="submit" class="btn btn-info" />
+        @Html.DropDownList("query", months, new { @class = "form-control" })
+        <input type="submit" class="btn btn-info"/>
     </div>
-   
 }
-<div id="results">@Html.Partial("_SearchPartial",Model)</div>
+<div id="results">@Html.Partial("_SearchPartial", Model)</div>

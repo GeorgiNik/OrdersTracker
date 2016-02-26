@@ -9,7 +9,6 @@
 
     using MvcTemplate.Data;
     using MvcTemplate.Data.Common;
-    using MvcTemplate.Services.Data;
     using MvcTemplate.Services.Data.Contracts;
     using MvcTemplate.Services.Web;
     using MvcTemplate.Web.Controllers;

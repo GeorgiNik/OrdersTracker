@@ -1,7 +1,6 @@
 ﻿namespace MvcTemplate.Web.ViewModels.Orders
 {
     using System;
-    using System.ComponentModel;
     using System.ComponentModel.DataAnnotations;
     using System.Web.Mvc;
 
@@ -9,6 +8,8 @@
 
     using MvcTemplate.Data.Models;
     using MvcTemplate.Web.Infrastructure.Mapping;
+
+    using Client = MvcTemplate.Web.App_GlobalResources.Clients.Client;
 
     public class OrderCreateViewModel : IMapTo<Order>, IHaveCustomMappings
     {
@@ -85,7 +86,7 @@
         public decimal Bonuses { get; set; }
 
         [AllowHtml]
-        [Display(Name = "Name", ResourceType = typeof(App_GlobalResources.Clients.Client))]
+        [Display(Name = "Name", ResourceType = typeof(Client))]
         public string ClientName { get; set; }
 
         public void CreateMappings(IMapperConfiguration configuration)

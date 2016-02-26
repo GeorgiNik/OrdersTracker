@@ -8,8 +8,6 @@
     using Microsoft.AspNet.Identity;
     using Microsoft.AspNet.Identity.EntityFramework;
 
-    using MvcTemplate.Data.Common.Models;
-
     // You can add profile data for the user by adding more properties to your ApplicationUser class, please visit http://go.microsoft.com/fwlink/?LinkID=317594 to learn more.
     public class ApplicationUser : IdentityUser
     {
@@ -17,6 +15,7 @@
         {
             this.Orders = new HashSet<Order>();
         }
+
         [MaxLength(70)]
         [MinLength(2)]
         public string AuthorName { get; set; }

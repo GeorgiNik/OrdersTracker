@@ -1,13 +1,12 @@
 ﻿namespace MvcTemplate.Web.ViewModels.Client
 {
-    using System.ComponentModel;
     using System.ComponentModel.DataAnnotations;
     using System.Web.Mvc;
 
     using MvcTemplate.Data.Models;
     using MvcTemplate.Web.Infrastructure.Mapping;
 
-    public class ClientViewModel : IMapTo<Client>,IMapFrom<Client>
+    public class ClientViewModel : IMapTo<Client>, IMapFrom<Client>
     {
         public int Id { get; set; }
 

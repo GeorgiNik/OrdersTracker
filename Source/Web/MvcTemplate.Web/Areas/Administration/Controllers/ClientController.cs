@@ -61,11 +61,10 @@
             if (this.ModelState.IsValid)
             {
                 var entity = this.clients.GetById(client.Id);
-                
+
                 entity.EIK = client.EIK;
                 entity.Name = client.Name;
                 entity.Address = client.Address;
-                                 
 
                 this.clients.Update(entity);
                 this.clients.Save();

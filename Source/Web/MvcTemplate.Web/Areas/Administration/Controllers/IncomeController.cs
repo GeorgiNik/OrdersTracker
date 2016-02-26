@@ -30,7 +30,7 @@
         public ActionResult Search(string query)
         {
             int month;
-            decimal result = 0M;
+            var result = 0M;
             if (!int.TryParse(query, out month))
             {
                 return this.PartialView("_SearchPartial", result);

@@ -5,8 +5,6 @@
     using System.Linq;
     using System.Web.Mvc;
 
-    using AutoMapper;
-
     using Kendo.Mvc.Extensions;
     using Kendo.Mvc.UI;
 
@@ -14,7 +12,6 @@
 
     using MvcTemplate.Data.Common;
     using MvcTemplate.Data.Models;
-    using MvcTemplate.Services.Data;
     using MvcTemplate.Services.Data.Contracts;
     using MvcTemplate.Web.Infrastructure.Mapping;
     using MvcTemplate.Web.ViewModels.Client;
@@ -91,7 +88,6 @@
                 entity.DateOfComplition = order.DateOfComplition;
                 entity.Bonuses = order.Bonuses;
                 entity.IsComplited = order.IsComplited;
-                
 
                 this.orders.Update(entity);
                 this.orders.Save();

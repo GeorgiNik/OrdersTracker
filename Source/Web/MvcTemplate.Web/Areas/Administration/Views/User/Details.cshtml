@@ -1,7 +1,6 @@
 ﻿@using MvcTemplate.Web.Areas.Administration.ViewModels
 @(Html.Kendo().Grid<UsersViewModel>().Name("grid").Columns(columns =>
       {
-          
           columns.Bound(c => c.AuthorName);
           columns.Bound(c => c.Email);
           columns.Command(command =>
