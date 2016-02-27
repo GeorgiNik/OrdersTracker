@@ -1,0 +1,20 @@
+﻿@{
+    ViewBag.Title = "Добавяне на клиент";
+}
+<h3>@ViewBag.Title</h3>
+@model MvcTemplate.Web.ViewModels.Client.ClientViewModel
+
+@using (Html.BeginForm("AddClient", "Clients", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+{
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary("", new { @class = "text-danger" })
+    @Html.DisplayFor(x => x.Name)
+    @Html.DisplayFor(x => x.EIK)
+    @Html.DisplayFor(x => x.Address)
+    @Html.Partial("_AddButtonPartial")
+}
+
+@section Scripts {
+
+    @Scripts.Render("~/bundles/jqueryval")
+}

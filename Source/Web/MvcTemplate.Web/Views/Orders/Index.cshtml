@@ -1,0 +1,36 @@
+﻿@using MvcTemplate.Web.ViewModels.Orders
+@(Html.Kendo().Grid<OrdersViewModel>().Name("grid").Columns(columns =>
+      {
+          columns.Bound(c => c.Creator).Width(110);
+          columns.Bound(c => c.CreatedOn).Format("{0:dd/MM/yyyy HH:mm}").Width(120);
+          columns.Bound(c => c.ClientEIK).Width(140);
+          columns.Bound(c => c.Deadline).Format("{0:dd/MM/yyyy HH:mm}").Width(120);
+          columns.Bound(c => c.Description).Width(350).HtmlAttributes(new { @rows = "3" });
+          columns.Bound(c => c.OrderPrice).Width(200);
+          columns.Bound(c => c.PaidInAdvance).Width(150);
+          columns.Bound(c => c.BillInCash).Width(150);
+          columns.Bound(c => c.Receipt).Width(160);
+          columns.Bound(c => c.PaidWithCard).Width(150);
+          columns.Bound(c => c.Econt).Width(100);
+          columns.Bound(c => c.PaidInCashWithoutReceipt).Width(200);
+          columns.Bound(c => c.PaidBankTransaction).Width(170);
+          columns.Bound(c => c.LeftToBePaid).Width(130);
+          columns.Bound(c => c.PaidAt).Format("{0:dd/MM/yyyy HH:mm}").Width(120);
+          columns.Bound(c => c.DateOfComplition).Format("{0:dd/MM/yyyy HH:mm}").Width(150);
+          columns.Bound(c => c.Bonuses).Width(100);
+          columns.Bound(c => c.IsComplited).Width(120);
+
+          columns.Command(command =>
+              {
+                  command.Edit();
+                  command.Destroy();
+              }).Width(180);
+      }).ToolBar(toolbar =>
+          {
+              toolbar.Excel();
+              toolbar.Pdf();
+          }).ColumnMenu().Editable(editable => editable.Mode(GridEditMode.PopUp)).HtmlAttributes(new { height = "400" }).Pageable().Sortable(sortable => { sortable.SortMode(GridSortMode.MultipleColumn); }).Filterable().Scrollable(a => a.Height("auto")).DataSource(dataSource => dataSource.Ajax().Model(model => model.Id(p => p.Id)).Read(read => read.Action("Orders_Read", "Orders")).Update(update => update.Action("Orders_Update", "Orders")).Destroy(destroy => destroy.Action("Orders_Destroy", "Orders")))
+      )
+@section customScripts {
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/jszip/2.4.0/jszip.js"></script>
+}
