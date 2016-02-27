@@ -1,0 +1,26 @@
+﻿@using OredersTracker.Common
+<ul class="nav navbar-nav">
+    @if (User.Identity.IsAuthenticated)
+    {
+        <li>@Html.ActionLink("Добавяне на клиент", "Add", "Clients", new { area = string.Empty }, null)</li>
+        <li class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown">Поръчки<b class="caret"></b></a>
+            <ul class="dropdown-menu">
+                <li>@Html.ActionLink("Списък с поръчки", "Index", "Orders", new { area = string.Empty }, null)</li>
+                <li>@Html.ActionLink("Създаване на поръчка", "Create", "Orders", new { area = string.Empty }, null)</li>
+            </ul>
+        </li>
+        if (User.IsInRole(GlobalConstants.AdministratorRoleName))
+        {
+            <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown">Админ<b class="caret"></b></a>
+                <ul class="dropdown-menu">
+                    <li>@Html.ActionLink("Управление на портребители", "Details", "User", new { area = "Administration" }, null)</li>
+                    <li>@Html.ActionLink("Управление на клиенти", "Details", "Client", new { area = "Administration" }, null)</li>
+                    <li>@Html.ActionLink("Приходи", "Details", "Income", new { area = "Administration" }, null)</li>
+                </ul>
+            </li>
+        }
+    }
+</ul>
+
