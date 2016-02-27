@@ -1,16 +1,14 @@
 ﻿namespace OredersTracker.Web.Areas.Administration.Controllers
 {
     using System;
-    using System.Data.Entity;
-    using System.Linq;
     using System.Web.Mvc;
 
     using Kendo.Mvc.Extensions;
     using Kendo.Mvc.UI;
 
     using OredersTracker.Common;
-    using OredersTracker.Data;
     using OredersTracker.Data.Models;
+    using OredersTracker.Services.Data.Contracts;
     using OredersTracker.Web.Areas.Administration.ViewModels;
     using OredersTracker.Web.Controllers;
     using OredersTracker.Web.Infrastructure.Mapping;
@@ -18,7 +16,12 @@
     [Authorize(Roles = GlobalConstants.AdministratorRoleName)]
     public class UserController : BaseController
     {
-        private readonly ApplicationDbContext db = new ApplicationDbContext();
+        private readonly IUserService userService;
+
+        public UserController(IUserService userService)
+        {
+            this.userService = userService;
+        }
 
         public ActionResult Details()
         {
@@ -27,8 +30,7 @@
 
         public ActionResult ApplicationUsers_Read([DataSourceRequest] DataSourceRequest request)
         {
-            IQueryable<ApplicationUser> applicationusers = this.db.Users;
-            var result = applicationusers.To<UsersViewModel>().ToDataSourceResult(request);
+            var result = this.userService.All().To<UsersViewModel>().ToDataSourceResult(request);
 
             return this.Json(result);
         }
@@ -38,14 +40,16 @@
         {
             if (this.ModelState.IsValid)
             {
-                var entity = this.db.Users.FirstOrDefault(x => x.Id == model.Id);
-                entity.AuthorName = model.AuthorName;
-                entity.Email = model.Email;
-                entity.UserName = model.Email;
-
-                this.db.Users.Attach(entity);
-                this.db.Entry(entity).State = EntityState.Modified;
-                this.db.SaveChanges();
+                if (model.IsAdmin)
+                {
+                    this.userService.MakeAdmin(model.Id);
+                }
+                else
+                {
+                    this.userService.RemoveAdmin(model.Id);
+                }
+                var user = this.Mapper.Map<ApplicationUser>(model);
+                this.userService.Update(user);
             }
             return this.Json(
                 new[]
@@ -60,10 +64,7 @@
             UsersViewModel applicationUser)
         {
             var entity = this.Mapper.Map<ApplicationUser>(applicationUser);
-
-            this.db.Users.Attach(entity);
-            this.db.Users.Remove(entity);
-            this.db.SaveChanges();
+            this.userService.Remove(entity);
 
             return this.Json(
                 new[]
@@ -88,10 +89,6 @@
             return this.File(fileContents, contentType, fileName);
         }
 
-        protected override void Dispose(bool disposing)
-        {
-            this.db.Dispose();
-            base.Dispose(disposing);
-        }
+        
     }
 }

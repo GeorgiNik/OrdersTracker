@@ -413,6 +413,8 @@
     <Content Include="Areas\Administration\Views\Client\Details.cshtml" />
     <Content Include="Areas\Administration\Views\User\Details.cshtml" />
     <Content Include="Areas\Administration\Views\Income\Details.cshtml" />
+    <None Include="Properties\PublishProfiles\ordertrack - FTP.pubxml" />
+    <None Include="Properties\PublishProfiles\ordertrack - Web Deploy.pubxml" />
     <None Include="Scripts\jquery-2.2.0.intellisense.js" />
     <Content Include="Scripts\jquery-2.2.0.js" />
     <Content Include="Scripts\jquery-2.2.0.min.js" />

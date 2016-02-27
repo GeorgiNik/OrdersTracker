@@ -4,6 +4,9 @@
 
     using AutoMapper;
 
+    using Microsoft.Ajax.Utilities;
+    using Microsoft.AspNet.Identity.EntityFramework;
+
     using OredersTracker.Data.Models;
     using OredersTracker.Web.App_GlobalResources.Users;
     using OredersTracker.Web.Infrastructure.Mapping;
@@ -21,10 +24,14 @@
         [Display(Name = "Email", ResourceType = typeof(UserInfo))]
         public string Email { get; set; }
 
+        public bool IsAdmin { get; set; }
+
         public void CreateMappings(IMapperConfiguration configuration)
         {
             configuration.CreateMap<ApplicationUser, UsersViewModel>()
                 .ForMember(x => x.Id, opt => opt.MapFrom(x => x.Id));
+            configuration.CreateMap<ApplicationUser, UsersViewModel>()
+                .ForMember(x => x.IsAdmin, opt => opt.MapFrom(x=>x.Roles.Count>0));
         }
     }
 }

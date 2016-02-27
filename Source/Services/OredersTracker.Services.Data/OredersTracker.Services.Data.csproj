@@ -75,6 +75,10 @@
       <Project>{7C950CDC-9587-4B65-A204-988EFED17948}</Project>
       <Name>OredersTracker.Data</Name>
     </ProjectReference>
+    <ProjectReference Include="..\..\OredersTracker.Common\OredersTracker.Common.csproj">
+      <Project>{701F322F-AA01-4DDC-90B6-6935981C1E73}</Project>
+      <Name>OredersTracker.Common</Name>
+    </ProjectReference>
     <ProjectReference Include="..\OredersTracker.Services.Web\OredersTracker.Services.Web.csproj">
       <Project>{deab17a2-58c1-448c-8a66-d49c3af7fc6c}</Project>
       <Name>OredersTracker.Services.Web</Name>
