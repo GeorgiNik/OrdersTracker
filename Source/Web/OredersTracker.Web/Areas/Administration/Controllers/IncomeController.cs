@@ -36,7 +36,7 @@
                 return this.View(nameof(this.Details),result);
             }
             var orders =
-                this.orderService.GetAll().To<OrdersViewModel>().Where(x => x.CreatedOn.Month == month).ToList();
+                this.orderService.All().To<OrdersViewModel>().Where(x => x.CreatedOn.Month == month).ToList();
 
             result = orders.Sum(x => x.OrderPrice);
 

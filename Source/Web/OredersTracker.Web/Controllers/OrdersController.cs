@@ -10,7 +10,6 @@
 
     using Microsoft.AspNet.Identity;
 
-    using OredersTracker.Data.Common;
     using OredersTracker.Data.Models;
     using OredersTracker.Services.Data.Contracts;
     using OredersTracker.Web.Infrastructure.Mapping;
@@ -22,13 +21,10 @@
     {
         private readonly IClientService clientService;
 
-        private readonly IDbRepository<Order> orders;
-
         private readonly IOrderService orderService;
 
-        public OrdersController(IDbRepository<Order> orders, IOrderService orderService, IClientService clientService)
+        public OrdersController(IOrderService orderService, IClientService clientService)
         {
-            this.orders = orders;
             this.orderService = orderService;
             this.clientService = clientService;
         }
@@ -52,64 +48,50 @@
         [ValidateAntiForgeryToken]
         public ActionResult CreateOrder(OrderCreateViewModel model)
         {
-            var newOrder = this.Mapper.Map<Order>(model);
-            newOrder.AuthorId = this.User.Identity.GetUserId();
-            this.orderService.Add(newOrder);
-            this.TempData["Notification"] = "New order created!";
+            if (this.ModelState.IsValid)
+            {
+                var newOrder = this.Mapper.Map<Order>(model);
+                newOrder.AuthorId = this.User.Identity.GetUserId();
+                this.orderService.Add(newOrder);
+
+                this.TempData["Notification"] = "New order created!";
+            }
             return this.RedirectToAction(nameof(this.Create));
         }
 
         public ActionResult Orders_Read([DataSourceRequest] DataSourceRequest request)
         {
-            var result = this.orders.All().To<OrdersViewModel>().ToDataSourceResult(request);
+            var result = this.orderService.All().To<OrdersViewModel>().ToDataSourceResult(request);
 
             return this.Json(result);
         }
 
         [AcceptVerbs(HttpVerbs.Post)]
-        public ActionResult Orders_Update([DataSourceRequest] DataSourceRequest request, OrdersViewModel order)
+        public ActionResult Orders_Update([DataSourceRequest] DataSourceRequest request, OrdersViewModel model)
         {
             if (this.ModelState.IsValid)
             {
-                var entity = this.orderService.GetById(order.Id);
-
-                entity.Deadline = order.Deadline;
-                entity.Description = order.Description;
-                entity.OrderPrice = order.OrderPrice;
-                entity.PaidInAdvance = order.PaidInAdvance;
-                entity.BillInCash = order.BillInCash;
-                entity.Receipt = order.Receipt;
-                entity.PaidWithCard = order.PaidWithCard;
-                entity.Econt = order.Econt;
-                entity.PaidInCashWithoutReceipt = order.PaidInCashWithoutReceipt;
-                entity.PaidBankTransaction = order.PaidBankTransaction;
-                entity.LeftToBePaid = order.LeftToBePaid;
-                entity.PaidAt = order.PaidAt;
-                entity.DateOfComplition = order.DateOfComplition;
-                entity.Bonuses = order.Bonuses;
-                entity.IsComplited = order.IsComplited;
-
-                this.orders.Update(entity);
-                this.orders.Save();
+                var order = this.Mapper.Map<Order>(model);
+                this.orderService.Update(order);
             }
 
             return this.Json(
                 new[]
                     {
-                        order
+                        model
                     }.ToDataSourceResult(request, this.ModelState));
         }
 
         [AcceptVerbs(HttpVerbs.Post)]
-        public ActionResult Orders_Destroy([DataSourceRequest] DataSourceRequest request, OrdersViewModel order)
+        public ActionResult Orders_Destroy([DataSourceRequest] DataSourceRequest request, OrdersViewModel model)
         {
-            this.orders.Delete(order.Id);
-            this.orders.Save();
+            var order = this.Mapper.Map<Order>(model);
+            this.orderService.Delete(order);
 
             return this.Json(
                 new[]
                     {
-                        order
+                        model
                     }.ToDataSourceResult(request, this.ModelState));
         }
 
@@ -127,12 +109,6 @@
             var fileContents = Convert.FromBase64String(base64);
 
             return this.File(fileContents, contentType, fileName);
-        }
-
-        protected override void Dispose(bool disposing)
-        {
-            this.orders.Dispose();
-            base.Dispose(disposing);
         }
     }
 }

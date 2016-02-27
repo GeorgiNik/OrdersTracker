@@ -15,7 +15,7 @@
             this.orders = orders;
         }
 
-        public IQueryable<Order> GetAll()
+        public IQueryable<Order> All()
         {
             return this.orders.All();
         }
@@ -23,16 +23,6 @@
         public Order GetById(int id)
         {
             return this.orders.GetById(id);
-        }
-
-        public IQueryable<Order> GetCompleted()
-        {
-            return this.orders.All().Where(x => x.IsComplited);
-        }
-
-        public IQueryable<Order> GetUnfinished()
-        {
-            return this.orders.All().Where(x => x.IsComplited == false);
         }
 
         public decimal GetOrdersTotalForMonth(int month)
@@ -53,6 +43,36 @@
         public void Add(Order order)
         {
             this.orders.Add(order);
+            this.orders.Save();
+        }
+
+        public void Update(Order order)
+        {
+            var entity = this.orders.GetById(order.Id);
+
+            entity.Deadline = order.Deadline;
+            entity.Description = order.Description;
+            entity.OrderPrice = order.OrderPrice;
+            entity.PaidInAdvance = order.PaidInAdvance;
+            entity.BillInCash = order.BillInCash;
+            entity.Receipt = order.Receipt;
+            entity.PaidWithCard = order.PaidWithCard;
+            entity.Econt = order.Econt;
+            entity.PaidInCashWithoutReceipt = order.PaidInCashWithoutReceipt;
+            entity.PaidBankTransaction = order.PaidBankTransaction;
+            entity.LeftToBePaid = order.LeftToBePaid;
+            entity.PaidAt = order.PaidAt;
+            entity.DateOfComplition = order.DateOfComplition;
+            entity.Bonuses = order.Bonuses;
+            entity.IsComplited = order.IsComplited;
+
+            this.orders.Update(entity);
+            this.orders.Save();
+        }
+
+        public void Delete(Order order)
+        {
+            this.orders.Delete(order.Id);
             this.orders.Save();
         }
     }

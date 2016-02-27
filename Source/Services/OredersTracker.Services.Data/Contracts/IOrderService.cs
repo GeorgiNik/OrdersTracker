@@ -6,13 +6,9 @@
 
     public interface IOrderService
     {
-        IQueryable<Order> GetAll();
+        IQueryable<Order> All();
 
         Order GetById(int id);
-
-        IQueryable<Order> GetCompleted();
-
-        IQueryable<Order> GetUnfinished();
 
         decimal GetOrdersTotalForMonth(int month);
 
@@ -21,5 +17,10 @@
         IQueryable<Order> GetAllPaidByCard();
 
         void Add(Order order);
+
+        void Update(Order order);
+
+        void Delete(Order order);
+
     }
 }

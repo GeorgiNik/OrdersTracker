@@ -31,7 +31,7 @@
                 GlobalConstants.HomePageCacheDuration);
             var totalOrders = this.Cache.Get(
                 "orders",
-                () => this.orders.GetAll().Count(),
+                () => this.orders.All().Count(),
                 GlobalConstants.HomePageCacheDuration);
             var totalClients = this.Cache.Get(
                 "clients",
