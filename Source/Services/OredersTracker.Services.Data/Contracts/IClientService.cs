@@ -6,12 +6,17 @@
 
     public interface IClientService
     {
-        IQueryable<Client> GetAll();
+        IQueryable<Client> All();
 
         Client GetById(int id);
 
         IQueryable<Order> GetAllOrders(int id);
 
         void Add(Client model);
+
+        void Delete(Client client);
+
+        void Update(Client client);
+        
     }
 }

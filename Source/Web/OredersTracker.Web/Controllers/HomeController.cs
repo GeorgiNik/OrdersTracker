@@ -35,7 +35,7 @@
                 GlobalConstants.HomePageCacheDuration);
             var totalClients = this.Cache.Get(
                 "clients",
-                () => this.clients.GetAll().Count(),
+                () => this.clients.All().Count(),
                 GlobalConstants.HomePageCacheDuration);
             var viewModel = new HomeViewModel
                                 {

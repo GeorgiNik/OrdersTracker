@@ -40,7 +40,7 @@
 
         public ActionResult Create()
         {
-            var clients = this.clientService.GetAll();
+            var clients = this.clientService.All();
             IEnumerable<SelectListItem> items =
                 clients.To<ClientViewModel>().Select(c => new SelectListItem { Value = c.Id.ToString(), Text = c.Name });
             this.ViewBag.Clients = items;

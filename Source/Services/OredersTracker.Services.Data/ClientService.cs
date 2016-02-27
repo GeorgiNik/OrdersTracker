@@ -18,9 +18,9 @@
             this.orders = orders;
         }
 
-        public IQueryable<Client> GetAll()
+        public IQueryable<Client> All()
         {
-            return this.clients.All();
+            return this.clients.All().AsQueryable();
         }
 
         public Client GetById(int id)
@@ -36,6 +36,23 @@
         public void Add(Client model)
         {
             this.clients.Add(model);
+            this.clients.Save();
+        }
+        
+        public void Delete(Client client)
+        {
+            this.clients.Delete(client.Id);
+            this.clients.Save();
+        }
+        public void Update(Client client)
+        {
+            var entity = this.clients.GetById(client.Id);
+
+            entity.EIK = client.EIK;
+            entity.Name = client.Name;
+            entity.Address = client.Address;
+
+            this.clients.Update(entity);
             this.clients.Save();
         }
     }
