@@ -27,8 +27,8 @@
         public string Creator { get; set; }
 
         [AllowHtml]
-        [Display(Name = "ClientEIK", ResourceType = typeof(Client))]
-        public string ClientEIK { get; set; }
+        [Display(Name = "Name", ResourceType = typeof(Client))]
+        public string ClientName { get; set; }
 
         [MaxLength(500)]
         [Display(Name = "Description", ResourceType = typeof(App_GlobalResources.Orders.Order))]
@@ -93,7 +93,7 @@
             configuration.CreateMap<Order, OrdersViewModel>()
                 .ForMember(x => x.Creator, opt => opt.MapFrom(x => x.Author.AuthorName));
             configuration.CreateMap<Order, OrdersViewModel>()
-                .ForMember(x => x.ClientEIK, opt => opt.MapFrom(x => x.Client.EIK));
+                .ForMember(x => x.ClientName, opt => opt.MapFrom(x => x.Client.Name));
             configuration.CreateMap<Order, OrdersViewModel>().ForMember(x => x.Id, opt => opt.MapFrom(x => x.Id));
         }
     }

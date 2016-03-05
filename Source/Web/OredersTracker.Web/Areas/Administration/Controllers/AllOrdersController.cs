@@ -11,6 +11,7 @@ namespace OredersTracker.Web.Areas.Administration.Controllers
 
     using Microsoft.AspNet.Identity;
 
+    using OredersTracker.Common;
     using OredersTracker.Data.Models;
     using OredersTracker.Services.Data.Contracts;
     using OredersTracker.Web.Controllers;
@@ -18,6 +19,7 @@ namespace OredersTracker.Web.Areas.Administration.Controllers
     using OredersTracker.Web.ViewModels.Client;
     using OredersTracker.Web.ViewModels.Orders;
 
+    [Authorize(Roles = GlobalConstants.AdministratorRoleName)]
     public class AllOrdersController : BaseController
     {
         // GET: Administration/AllOrders

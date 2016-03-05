@@ -79,6 +79,15 @@ namespace OredersTracker.Web.App_GlobalResources.Orders {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Клиент.
+        /// </summary>
+        public static string ClientName {
+            get {
+                return ResourceManager.GetString("ClientName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Дата.
         /// </summary>
         public static string CreatedOn {

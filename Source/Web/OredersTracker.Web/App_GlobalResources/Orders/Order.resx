@@ -123,6 +123,9 @@
   <data name="Bonuses" xml:space="preserve">
     <value>Бонуси</value>
   </data>
+  <data name="ClientName" xml:space="preserve">
+    <value>Клиент</value>
+  </data>
   <data name="CreatedOn" xml:space="preserve">
     <value>Дата</value>
   </data>
