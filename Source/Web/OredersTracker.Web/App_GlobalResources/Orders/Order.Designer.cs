@@ -61,7 +61,7 @@ namespace OredersTracker.Web.App_GlobalResources.Orders {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Фактура в брой.
+        ///   Looks up a localized string similar to № фактура.
         /// </summary>
         public static string BillInCash {
             get {
@@ -75,6 +75,15 @@ namespace OredersTracker.Web.App_GlobalResources.Orders {
         public static string Bonuses {
             get {
                 return ResourceManager.GetString("Bonuses", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Дата.
+        /// </summary>
+        public static string CreatedOn {
+            get {
+                return ResourceManager.GetString("CreatedOn", resourceCulture);
             }
         }
         
@@ -120,6 +129,15 @@ namespace OredersTracker.Web.App_GlobalResources.Orders {
         public static string Econt {
             get {
                 return ResourceManager.GetString("Econt", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Номер.
+        /// </summary>
+        public static string Id {
+            get {
+                return ResourceManager.GetString("Id", resourceCulture);
             }
         }
         

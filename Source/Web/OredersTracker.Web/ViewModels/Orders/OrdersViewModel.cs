@@ -14,10 +14,11 @@
     public class OrdersViewModel : IMapTo<Order>, IMapFrom<Order>, IHaveCustomMappings
     {
         [UIHint("Id")]
+        [Display(Name = "Id", ResourceType = typeof(App_GlobalResources.Orders.Order))]
         public int Id { get; set; }
 
         [UIHint("DateDisabled")]
-        [Display(Name = "Deadline", ResourceType = typeof(App_GlobalResources.Orders.Order))]
+        [Display(Name = "CreatedOn", ResourceType = typeof(App_GlobalResources.Orders.Order))]
         public DateTime CreatedOn { get; set; }
 
         [AllowHtml]

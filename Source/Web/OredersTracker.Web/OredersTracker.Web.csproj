@@ -237,6 +237,7 @@
     <Compile Include="Areas\Administration\Controllers\AdministrationController.cs" />
     <Compile Include="Areas\Administration\Controllers\ClientController.cs" />
     <Compile Include="Areas\Administration\Controllers\IncomeController.cs" />
+    <Compile Include="Areas\Administration\Controllers\AllOrdersController.cs" />
     <Compile Include="Areas\Administration\Controllers\UserController.cs" />
     <Compile Include="Areas\Administration\ViewModels\UsersViewModel.cs" />
     <Compile Include="Controllers\AccountController.cs" />
@@ -413,6 +414,7 @@
     <Content Include="Areas\Administration\Views\Client\Details.cshtml" />
     <Content Include="Areas\Administration\Views\User\Details.cshtml" />
     <Content Include="Areas\Administration\Views\Income\Details.cshtml" />
+    <Content Include="Areas\Administration\Views\AllOrders\Details.cshtml" />
     <None Include="Properties\PublishProfiles\ordertrack - FTP.pubxml" />
     <None Include="Properties\PublishProfiles\ordertrack - Web Deploy.pubxml" />
     <None Include="Scripts\jquery-2.2.0.intellisense.js" />

@@ -8,6 +8,8 @@
     {
         IQueryable<Order> All();
 
+        IQueryable<Order> GetCurrentUserOrders(string id);
+
         Order GetById(int id);
 
         decimal GetOrdersTotalForMonth(int month);
@@ -21,6 +23,5 @@
         void Update(Order order);
 
         void Delete(Order order);
-
     }
 }

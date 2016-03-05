@@ -20,6 +20,11 @@
             return this.orders.All();
         }
 
+        public IQueryable<Order> GetCurrentUserOrders(string id)
+        {
+            return this.orders.All().Where(x => x.AuthorId == id).AsQueryable();
+        } 
+
         public Order GetById(int id)
         {
             return this.orders.GetById(id);

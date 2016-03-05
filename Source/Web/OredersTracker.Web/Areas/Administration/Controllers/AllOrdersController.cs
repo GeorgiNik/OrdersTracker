@@ -1,10 +1,11 @@
-﻿namespace OredersTracker.Web.Controllers
-{
-    using System;
-    using System.Collections.Generic;
-    using System.Linq;
-    using System.Web.Mvc;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web;
+using System.Web.Mvc;
 
+namespace OredersTracker.Web.Areas.Administration.Controllers
+{
     using Kendo.Mvc.Extensions;
     using Kendo.Mvc.UI;
 
@@ -12,62 +13,42 @@
 
     using OredersTracker.Data.Models;
     using OredersTracker.Services.Data.Contracts;
+    using OredersTracker.Web.Controllers;
     using OredersTracker.Web.Infrastructure.Mapping;
     using OredersTracker.Web.ViewModels.Client;
     using OredersTracker.Web.ViewModels.Orders;
 
-    [Authorize]
-    public class OrdersController : BaseController
+    public class AllOrdersController : BaseController
     {
+        // GET: Administration/AllOrders
+        
+
         private readonly IClientService clientService;
 
         private readonly IOrderService orderService;
 
-        public OrdersController(IOrderService orderService, IClientService clientService)
+        public AllOrdersController(IOrderService orderService, IClientService clientService)
         {
             this.orderService = orderService;
             this.clientService = clientService;
         }
 
-        public ActionResult Index()
+        public ActionResult Details()
         {
-            return this.View();
+            return View();
         }
 
-        public ActionResult Create()
+        
+       
+        public ActionResult AllOrders_Read([DataSourceRequest] DataSourceRequest request)
         {
-            var clients = this.clientService.All();
-            IEnumerable<SelectListItem> items =
-                clients.To<ClientViewModel>().Select(c => new SelectListItem { Value = c.Id.ToString(), Text = c.Name });
-            this.ViewBag.Clients = items;
-
-            return this.View();
-        }
-
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult CreateOrder(OrderCreateViewModel model)
-        {
-            if (this.ModelState.IsValid)
-            {
-                var newOrder = this.Mapper.Map<Order>(model);
-                newOrder.AuthorId = this.User.Identity.GetUserId();
-                this.orderService.Add(newOrder);
-
-                this.TempData["Notification"] = "New order created!";
-            }
-            return this.RedirectToAction(nameof(this.Create));
-        }
-
-        public ActionResult Orders_Read([DataSourceRequest] DataSourceRequest request)
-        {
-            var result = this.orderService.GetCurrentUserOrders(this.User.Identity.GetUserId()).To<OrdersViewModel>().ToDataSourceResult(request);
+            var result = this.orderService.All().To<OrdersViewModel>().ToDataSourceResult(request);
 
             return this.Json(result);
         }
 
         [AcceptVerbs(HttpVerbs.Post)]
-        public ActionResult Orders_Update([DataSourceRequest] DataSourceRequest request, OrdersViewModel model)
+        public ActionResult AllOrders_Update([DataSourceRequest] DataSourceRequest request, OrdersViewModel model)
         {
             if (this.ModelState.IsValid)
             {
@@ -83,7 +64,7 @@
         }
 
         [AcceptVerbs(HttpVerbs.Post)]
-        public ActionResult Orders_Destroy([DataSourceRequest] DataSourceRequest request, OrdersViewModel model)
+        public ActionResult AllOrders_Destroy([DataSourceRequest] DataSourceRequest request, OrdersViewModel model)
         {
             var order = this.Mapper.Map<Order>(model);
             this.orderService.Delete(order);

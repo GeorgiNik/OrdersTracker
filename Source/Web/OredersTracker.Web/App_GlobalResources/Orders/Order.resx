@@ -118,10 +118,13 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="BillInCash" xml:space="preserve">
-    <value>Фактура в брой</value>
+    <value>№ фактура</value>
   </data>
   <data name="Bonuses" xml:space="preserve">
     <value>Бонуси</value>
+  </data>
+  <data name="CreatedOn" xml:space="preserve">
+    <value>Дата</value>
   </data>
   <data name="Creator" xml:space="preserve">
     <value>Дизайнер</value>
@@ -137,6 +140,9 @@
   </data>
   <data name="Econt" xml:space="preserve">
     <value>Еконт</value>
+  </data>
+  <data name="Id" xml:space="preserve">
+    <value>Номер</value>
   </data>
   <data name="IsComplited" xml:space="preserve">
     <value>Завършена</value>
