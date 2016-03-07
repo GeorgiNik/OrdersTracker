@@ -36,7 +36,7 @@
 
         public ActionResult Create()
         {
-            var clients = this.clientService.All();
+            var clients = this.clientService.All().OrderBy(x=>x.Name);
             IEnumerable<SelectListItem> items =
                 clients.To<ClientViewModel>().Select(c => new SelectListItem { Value = c.Id.ToString(), Text = c.Name });
             this.ViewBag.Clients = items;
