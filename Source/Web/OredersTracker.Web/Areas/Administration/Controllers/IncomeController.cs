@@ -5,6 +5,7 @@
 
     using OredersTracker.Common;
     using OredersTracker.Services.Data.Contracts;
+    using OredersTracker.Web.Areas.Administration.ViewModels;
     using OredersTracker.Web.Controllers;
     using OredersTracker.Web.Infrastructure.Mapping;
     using OredersTracker.Web.ViewModels.Orders;
@@ -24,23 +25,37 @@
 
         public ActionResult Details()
         {
-            return this.View();
+            var viewModel=new IncomeViewModel();
+            return this.View(viewModel);
         }
 
         public ActionResult Search(string query)
         {
+            //TODO: improve code quality and introduce service
             int month;
-            var result = 0M;
+            
             if (!int.TryParse(query, out month))
             {
-                return this.View(nameof(this.Details),result);
+                return this.View(nameof(this.Details));
             }
-            var orders =
-                this.orderService.All().To<OrdersViewModel>().Where(x => x.CreatedOn.Month == month).ToList();
 
-            result = orders.Sum(x => x.OrderPrice);
+            var orders = this.orderService.All().To<OrdersViewModel>().Where(x => x.CreatedOn.Month == month).ToList();
+            var viewModel = new IncomeViewModel
+                                {
+                                    TotalForMonth = orders.Sum(x => x.OrderPrice),
+                                    TotalForKornelia =
+                                        orders.Where(x => x.Creator == "Корнелия").Sum(x => x.OrderPrice),
+                                    TotalForMitko =
+                                        orders.Where(x => x.Creator == "Митко").Sum(x => x.OrderPrice),
+                                    TotalForNikola =
+                                        orders.Where(x => x.Creator == "Никола").Sum(x => x.OrderPrice),
+                                    TotalForStaiko =
+                                        orders.Where(x => x.Creator == "Стайко").Sum(x => x.OrderPrice)
+                                };
 
-            return this.View(nameof(this.Details),result);
+
+
+            return this.View(nameof(this.Details),viewModel);
         }
     }
 }

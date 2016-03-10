@@ -31,5 +31,12 @@
         [UIHint("FormMultiline")]
         [Display(Name = "Address", ResourceType = typeof(App_GlobalResources.Clients.Client))]
         public string Address { get; set; }
+
+        [MaxLength(15)]
+        [Phone]
+        [Display(Name = "Telephone", ResourceType = typeof(App_GlobalResources.Clients.Client))]
+        [UIHint("FormString")]
+        [AllowHtml]
+        public string Telephone { get; set; }
     }
 }

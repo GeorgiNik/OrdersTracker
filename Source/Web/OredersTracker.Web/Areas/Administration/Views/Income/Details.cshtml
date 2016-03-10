@@ -1,7 +1,7 @@
-﻿@model decimal?
+﻿@model OredersTracker.Web.Areas.Administration.ViewModels.IncomeViewModel
 @{
     ICollection<SelectListItem> months = new List<SelectListItem>();
-    for (var i = 1; i < 12; i++)
+    for (var i = 1; i <= 12; i++)
     {
         var month = new SelectListItem { Text = i.ToString(), Value = i.ToString() };
         months.Add(month);
@@ -17,4 +17,11 @@
     </div>
 }
 <br/>
-<div id="results"><b>Резултат : @Model</b></div>
+<div id="results"><b>Общо за избрания месец : @Model.TotalForMonth</b>
+</div>
+<div id="resultsEmployees">
+    <b>Корнелия : @Model.TotalForKornelia</b><br/>
+    <b>Митко : @Model.TotalForMitko</b><br/>
+    <b>Никола : @Model.TotalForNikola</b><br/>
+    <b>Стайко : @Model.TotalForStaiko</b><br/>
+</div>

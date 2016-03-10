@@ -21,6 +21,10 @@
         [MaxLength(100)]
         public string Address { get; set; }
 
+        [MaxLength(15)]
+        [Phone]
+        public string Telephone { get; set; }
+
         public ICollection<Order> Orders { get; set; }
     }
 }

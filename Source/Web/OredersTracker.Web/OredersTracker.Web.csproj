@@ -235,10 +235,10 @@
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Areas\Administration\AdministrationAreaRegistration.cs" />
     <Compile Include="Areas\Administration\Controllers\AdministrationController.cs" />
-    <Compile Include="Areas\Administration\Controllers\ClientController.cs" />
     <Compile Include="Areas\Administration\Controllers\IncomeController.cs" />
     <Compile Include="Areas\Administration\Controllers\AllOrdersController.cs" />
     <Compile Include="Areas\Administration\Controllers\UserController.cs" />
+    <Compile Include="Areas\Administration\ViewModels\IncomeViewModel.cs" />
     <Compile Include="Areas\Administration\ViewModels\UsersViewModel.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\BaseController.cs" />
@@ -411,7 +411,6 @@
     <Content Include="Content\KendoUI\fonts\DejaVu\DejaVuSerif.ttf" />
     <Content Include="Content\KendoUI\images\kendoui.ttf" />
     <Content Include="Content\KendoUI\images\kendoui.woff" />
-    <Content Include="Areas\Administration\Views\Client\Details.cshtml" />
     <Content Include="Areas\Administration\Views\User\Details.cshtml" />
     <Content Include="Areas\Administration\Views\Income\Details.cshtml" />
     <Content Include="Areas\Administration\Views\AllOrders\Details.cshtml" />
@@ -499,6 +498,7 @@
     <Content Include="Views\Shared\DisplayTemplates\FormDateTime.cshtml" />
     <Content Include="Views\Shared\DisplayTemplates\FormString.cshtml" />
     <Content Include="Views\Shared\DisplayTemplates\FormMultiline.cshtml" />
+    <Content Include="Views\Clients\Details.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Areas\Administration\Models\" />

@@ -70,7 +70,7 @@ namespace OredersTracker.Web.App_GlobalResources.Orders {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Бонуси.
+        ///   Looks up a localized string similar to Други разходи.
         /// </summary>
         public static string Bonuses {
             get {

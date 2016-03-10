@@ -51,6 +51,7 @@
             entity.EIK = client.EIK;
             entity.Name = client.Name;
             entity.Address = client.Address;
+            entity.Telephone = client.Telephone;
 
             this.clients.Update(entity);
             this.clients.Save();

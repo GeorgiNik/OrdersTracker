@@ -126,4 +126,7 @@
   <data name="Name" xml:space="preserve">
     <value>Име на клиент</value>
   </data>
+  <data name="Telephone" xml:space="preserve">
+    <value>Телефонен номер</value>
+  </data>
 </root>
