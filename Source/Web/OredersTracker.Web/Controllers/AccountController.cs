@@ -9,6 +9,7 @@
     using Microsoft.AspNet.Identity.Owin;
     using Microsoft.Owin.Security;
 
+    using OredersTracker.Common;
     using OredersTracker.Data.Models;
     using OredersTracker.Web.ViewModels.Account;
 
@@ -151,7 +152,7 @@
         }
 
         // GET: /Account/Register
-        [AllowAnonymous]
+        [Authorize(Roles = GlobalConstants.AdministratorRoleName)]
         public ActionResult Register()
         {
             return this.View();
@@ -159,7 +160,7 @@
 
         // POST: /Account/Register
         [HttpPost]
-        [AllowAnonymous]
+        [Authorize(Roles = GlobalConstants.AdministratorRoleName)]
         [ValidateAntiForgeryToken]
         [CaptchaValidator]
         public async Task<ActionResult> Register(RegisterViewModel model, bool captchaValid)
@@ -340,37 +341,37 @@
                 new { Provider = model.SelectedProvider, model.ReturnUrl, model.RememberMe });
         }
 
-        // GET: /Account/ExternalLoginCallback
-        [AllowAnonymous]
-        public async Task<ActionResult> ExternalLoginCallback(string returnUrl)
-        {
-            var loginInfo = await this.AuthenticationManager.GetExternalLoginInfoAsync();
-            if (loginInfo == null)
-            {
-                return this.RedirectToAction("Login");
-            }
+        //// GET: /Account/ExternalLoginCallback
+        //[AllowAnonymous]
+        //public async Task<ActionResult> ExternalLoginCallback(string returnUrl)
+        //{
+        //    var loginInfo = await this.AuthenticationManager.GetExternalLoginInfoAsync();
+        //    if (loginInfo == null)
+        //    {
+        //        return this.RedirectToAction("Login");
+        //    }
 
-            // Sign in the user with this external login provider if the user already has a login
-            var result = await this.SignInManager.ExternalSignInAsync(loginInfo, false);
-            switch (result)
-            {
-                case SignInStatus.Success:
-                    return this.RedirectToLocal(returnUrl);
-                case SignInStatus.LockedOut:
-                    return this.View("Lockout");
-                case SignInStatus.RequiresVerification:
-                    return this.RedirectToAction("SendCode", new { ReturnUrl = returnUrl, RememberMe = false });
-                case SignInStatus.Failure:
-                default:
+        //    // Sign in the user with this external login provider if the user already has a login
+        //    var result = await this.SignInManager.ExternalSignInAsync(loginInfo, false);
+        //    switch (result)
+        //    {
+        //        case SignInStatus.Success:
+        //            return this.RedirectToLocal(returnUrl);
+        //        case SignInStatus.LockedOut:
+        //            return this.View("Lockout");
+        //        case SignInStatus.RequiresVerification:
+        //            return this.RedirectToAction("SendCode", new { ReturnUrl = returnUrl, RememberMe = false });
+        //        case SignInStatus.Failure:
+        //        default:
 
-                    // If the user does not have an account, then prompt the user to create an account
-                    this.ViewBag.ReturnUrl = returnUrl;
-                    this.ViewBag.LoginProvider = loginInfo.Login.LoginProvider;
-                    return this.View(
-                        "ExternalLoginConfirmation",
-                        new ExternalLoginConfirmationViewModel { Email = loginInfo.Email });
-            }
-        }
+        //            // If the user does not have an account, then prompt the user to create an account
+        //            this.ViewBag.ReturnUrl = returnUrl;
+        //            this.ViewBag.LoginProvider = loginInfo.Login.LoginProvider;
+        //            return this.View(
+        //                "ExternalLoginConfirmation",
+        //                new ExternalLoginConfirmationViewModel { Email = loginInfo.Email });
+        //    }
+        //}
 
         // POST: /Account/ExternalLoginConfirmation
         [HttpPost]
