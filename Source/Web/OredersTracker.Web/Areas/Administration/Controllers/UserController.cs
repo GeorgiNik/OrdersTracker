@@ -2,10 +2,8 @@
 {
     using System;
     using System.Web.Mvc;
-
     using Kendo.Mvc.Extensions;
     using Kendo.Mvc.UI;
-
     using OredersTracker.Common;
     using OredersTracker.Data.Models;
     using OredersTracker.Services.Data.Contracts;
@@ -30,7 +28,7 @@
 
         public ActionResult ApplicationUsers_Read([DataSourceRequest] DataSourceRequest request)
         {
-            var result = this.userService.All().To<UsersViewModel>().ToDataSourceResult(request);
+            DataSourceResult result = this.userService.All().To<UsersViewModel>().ToDataSourceResult(request);
 
             return this.Json(result);
         }
@@ -51,11 +49,8 @@
                 var user = this.Mapper.Map<ApplicationUser>(model);
                 this.userService.Update(user);
             }
-            return this.Json(
-                new[]
-                    {
-                        model
-                    }.ToDataSourceResult(request, this.ModelState));
+
+            return this.Json(new[] { model }.ToDataSourceResult(request, this.ModelState));
         }
 
         [AcceptVerbs(HttpVerbs.Post)]
@@ -66,17 +61,13 @@
             var entity = this.Mapper.Map<ApplicationUser>(applicationUser);
             this.userService.Remove(entity);
 
-            return this.Json(
-                new[]
-                    {
-                        applicationUser
-                    }.ToDataSourceResult(request, this.ModelState));
+            return this.Json(new[] { applicationUser }.ToDataSourceResult(request, this.ModelState));
         }
 
         [HttpPost]
         public ActionResult Excel_Export_Save(string contentType, string base64, string fileName)
         {
-            var fileContents = Convert.FromBase64String(base64);
+            byte[] fileContents = Convert.FromBase64String(base64);
 
             return this.File(fileContents, contentType, fileName);
         }
@@ -84,11 +75,9 @@
         [HttpPost]
         public ActionResult Pdf_Export_Save(string contentType, string base64, string fileName)
         {
-            var fileContents = Convert.FromBase64String(base64);
+            byte[] fileContents = Convert.FromBase64String(base64);
 
             return this.File(fileContents, contentType, fileName);
         }
-
-        
     }
 }

@@ -4,12 +4,9 @@
     using System.Collections.Generic;
     using System.Linq;
     using System.Web.Mvc;
-
     using Kendo.Mvc.Extensions;
     using Kendo.Mvc.UI;
-
     using Microsoft.AspNet.Identity;
-
     using OredersTracker.Data.Models;
     using OredersTracker.Services.Data.Contracts;
     using OredersTracker.Web.Infrastructure.Mapping;
@@ -36,7 +33,7 @@
 
         public ActionResult Create()
         {
-            var clients = this.clientService.All().OrderBy(x=>x.Name);
+            IOrderedQueryable<Client> clients = this.clientService.All().OrderBy(x => x.Name);
             IEnumerable<SelectListItem> items =
                 clients.To<ClientViewModel>().Select(c => new SelectListItem { Value = c.Id.ToString(), Text = c.Name });
             this.ViewBag.Clients = items;
@@ -61,7 +58,7 @@
 
         public ActionResult Orders_Read([DataSourceRequest] DataSourceRequest request)
         {
-            var result = this.orderService.GetCurrentUserOrders(this.User.Identity.GetUserId()).To<OrdersViewModel>().ToDataSourceResult(request);
+            var result = this.orderService.GetCurrentUserOrders(this.User.Identity.GetUserId()).To<OrdersViewModel>().ToList().OrderByDescending(x=>x.Id).ToDataSourceResult(request);
 
             return this.Json(result);
         }
@@ -75,11 +72,7 @@
                 this.orderService.Update(order);
             }
 
-            return this.Json(
-                new[]
-                    {
-                        model
-                    }.ToDataSourceResult(request, this.ModelState));
+            return this.Json(new[] { model }.ToDataSourceResult(request, this.ModelState));
         }
 
         [AcceptVerbs(HttpVerbs.Post)]
@@ -88,17 +81,13 @@
             var order = this.Mapper.Map<Order>(model);
             this.orderService.Delete(order);
 
-            return this.Json(
-                new[]
-                    {
-                        model
-                    }.ToDataSourceResult(request, this.ModelState));
+            return this.Json(new[] { model }.ToDataSourceResult(request, this.ModelState));
         }
 
         [HttpPost]
         public ActionResult Excel_Export_Save(string contentType, string base64, string fileName)
         {
-            var fileContents = Convert.FromBase64String(base64);
+            byte[] fileContents = Convert.FromBase64String(base64);
 
             return this.File(fileContents, contentType, fileName);
         }
@@ -106,7 +95,7 @@
         [HttpPost]
         public ActionResult Pdf_Export_Save(string contentType, string base64, string fileName)
         {
-            var fileContents = Convert.FromBase64String(base64);
+            byte[] fileContents = Convert.FromBase64String(base64);
 
             return this.File(fileContents, contentType, fileName);
         }
